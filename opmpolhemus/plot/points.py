@@ -8,7 +8,7 @@ def plot_points(points, pt=0.8, c='b'):
     plot_name = 'point plot, #points={}'.format(len(points))
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
-    xyz = points
+    xyz = np.array(points)
     ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=c, s=pt)
 
 
