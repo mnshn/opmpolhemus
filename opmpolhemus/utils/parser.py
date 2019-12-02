@@ -10,4 +10,4 @@ def mat_parser(file):
             line = line.split('\n')[0]
             line = list(map(lambda x: float(x), line.split('\t')))
             output.append(line)
-    return output
+    return np.array(output)
