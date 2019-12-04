@@ -13,7 +13,7 @@ opm = mat_parser(test_file)
 
 opms = looper(opm)
 
-opm1 = list(range(8, 22))
+opm1 = list(range(8, 40))
 plot_points(opm, opm1)
 # print(opms)
-# plt.show()
+plt.show()
