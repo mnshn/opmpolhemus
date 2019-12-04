@@ -1,5 +1,5 @@
 import numpy as np
-OPMS = 2
+OPMS = 34
 
 
 def com(points):
@@ -29,7 +29,7 @@ def is_not_part(p_index, K_index, points, pcl, com_threshold):
 
 def looper(pcl, start=8, double_click_threshold=10e-4):
     output = {}
-    ell = start
+    K = start
     for i in range(0, OPMS):
         output[i] = {}
         point_index = 0
@@ -37,26 +37,22 @@ def looper(pcl, start=8, double_click_threshold=10e-4):
         while point_index < 15:
             unique_points_so_far = list(
                 map(lambda x: x[0], list(output[i].values())))
-            # K = start + (i + 1) * j
-            if is_not_part(point_index, ell, unique_points_so_far, pcl, 0.01):
+            if is_not_part(point_index, K, unique_points_so_far, pcl, 0.01):
                 print(
-                    ell,
-                    abs(
-                        np.linalg.norm(com(unique_points_so_far) - pcl[ell]) -
-                        diff_of_com(unique_points_so_far)))
-
+                    '📸 OK, that was OPM {}'.format(i),
+                    'Found {} corners with a total of {} points'.format(
+                        point_index,
+                        j), 'indices {} through {}'.format(K - j, K - 1))
                 break
             else:
                 for L in range(0, point_index):
-                    if np.linalg.norm(pcl[ell] - output[i][L][0]
-                                      ) < double_click_threshold:
-                        output[i][L].append(pcl[ell])
+                    if np.linalg.norm(
+                            pcl[K] - output[i][L][0]) < double_click_threshold:
+                        output[i][L].append(pcl[K])
                         break
                 else:
-                    output[i][point_index] = [pcl[ell]]
+                    output[i][point_index] = [pcl[K]]
                     point_index += 1
                 j += 1
-            ell += 1
-            print(ell)
-    print(output)
+            K += 1
     return output
