@@ -3,13 +3,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_points(points, pt=0.8, c='b'):
+def plot_points(pcl, indices=[], pt=6.0, c='r'):
     print('🎨 Making some plots')
-    plot_name = 'point plot, #points={}'.format(len(points))
+    plot_name = 'point plot, #points={}'.format(len(indices))
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
-    xyz = np.array(points)
+    if len(indices):
+        xyz = np.array(pcl)[np.array(indices)]
+    else:
+        xyz = np.array(pcl)
     ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=c, s=pt)
+    if len(indices):
+        for i in range(len(indices)):
+            ax.text(xyz[i, 0], xyz[i, 1], xyz[i, 2], indices[i])
 
 
 def plot_points_list(list_in=[], pt=0.8):
