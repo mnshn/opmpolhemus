@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_points(pcl, indices=[], pt=6.0, c='r'):
+def plot_points(pcl, indices=[], surface_slopes=[], pt=6.0, c='r'):
     print('🎨 Making some plots')
     plot_name = 'point plot, #points={}'.format(len(indices))
     fig = plt.figure(plot_name)
@@ -16,6 +16,24 @@ def plot_points(pcl, indices=[], pt=6.0, c='r'):
     if len(indices):
         for i in range(len(indices)):
             ax.text(xyz[i, 0], xyz[i, 1], xyz[i, 2], indices[i])
+    if (len(surface_slopes)):
+        alpha = surface_slopes[0]
+        beta = surface_slopes[1]
+        gamma = surface_slopes[2]
+        xMax = max(xyz[:, 0])
+        xMin = min(xyz[:, 0])
+        yMax = max(xyz[:, 1])
+        yMin = min(xyz[:, 1])
+
+        def f(x, y):
+            return alpha + beta * x + gamma * y
+
+        x = np.linspace(xMin, xMax, 30)
+        y = np.linspace(yMin, yMax, 30)
+
+        X, Y = np.meshgrid(x, y)
+        Z = f(X, Y)
+        ax.contour3D(X, Y, Z, 50, cmap='binary')
 
 
 def plot_points_list(list_in=[], pt=5.8):
