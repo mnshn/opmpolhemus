@@ -5,9 +5,11 @@ import matplotlib.pyplot as plt
 
 def plot_points(pcl, indices=[], surface_slopes=[], pt=6.0, c='r'):
     print('🎨 Making some plots')
-    plot_name = 'point plot, #points={}'.format(len(indices))
+    plot_name = 'point plot,  # points={}, range: {}-{}'.format(
+        len(indices), min(indices), max(indices))
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
+    ax.grid(False)
     if len(indices):
         xyz = np.array(pcl)[np.array(indices)]
     else:

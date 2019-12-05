@@ -29,8 +29,7 @@ def is_not_part(p_index, K_index, points, pcl, com_threshold):
         com_threshold)
 
 
-def looper(pcl, start=8, double_click_threshold=10e-4):
-    time_start = time.clock()
+def opms(pcl, start=8, double_click_threshold=10e-4):
     output = {}
     K = start
     for i in range(0, OPMS):
@@ -56,5 +55,4 @@ def looper(pcl, start=8, double_click_threshold=10e-4):
                     point_index += 1
                 j += 1
             K += 1
-    print('⏱:', time.clock() - time_start)
     return output
