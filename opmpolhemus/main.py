@@ -19,18 +19,19 @@ def single_opm(i):
 
 
 for i in range(0, 4):
+    slopes, projections = plane_maker(single_opm(i), opm)
     plot_points(opm,
                 indices=single_opm(i),
-                surface_slopes=plane_maker(single_opm(i), opm))
+                surface_slopes=slopes,
+                projected_points=projections,
+                additional_points=[])
 
+# def opm_list():
+#     out = []
+#     for i in list(all_opms.keys()):
+#         out.append(np.array(list(map(lambda x: opm[x], single_opm(i)))))
+#     return np.array(out)
 
-def opm_list():
-    out = []
-    for i in list(all_opms.keys()):
-        out.append(np.array(list(map(lambda x: opm[x], single_opm(i)))))
-    return np.array(out)
-
-
-plot_points_list(opm_list())
+# plot_points_list(opm_list())
 
 plt.show()

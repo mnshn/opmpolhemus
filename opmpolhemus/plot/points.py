@@ -3,7 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_points(pcl, indices=[], surface_slopes=[], pt=6.0, c='r'):
+def plot_points(pcl,
+                indices=[],
+                surface_slopes=[],
+                projected_points=[],
+                additional_points=[],
+                pt=6.0,
+                c='r'):
     print('🎨 Making some plots')
     plot_name = 'point plot,  # points={}, range: {}-{}'.format(
         len(indices), min(indices), max(indices))
@@ -19,16 +25,16 @@ def plot_points(pcl, indices=[], surface_slopes=[], pt=6.0, c='r'):
         for i in range(len(indices)):
             ax.text(xyz[i, 0], xyz[i, 1], xyz[i, 2], indices[i])
     if (len(surface_slopes)):
-        alpha = surface_slopes[0]
-        beta = surface_slopes[1]
-        gamma = surface_slopes[2]
+        a = surface_slopes[0]
+        b = surface_slopes[1]
+        c = surface_slopes[2]
         xMax = max(xyz[:, 0])
         xMin = min(xyz[:, 0])
         yMax = max(xyz[:, 1])
         yMin = min(xyz[:, 1])
 
         def f(x, y):
-            return alpha + beta * x + gamma * y
+            return a * x + b * y + c
 
         x = np.linspace(xMin, xMax, 30)
         y = np.linspace(yMin, yMax, 30)
@@ -36,6 +42,13 @@ def plot_points(pcl, indices=[], surface_slopes=[], pt=6.0, c='r'):
         X, Y = np.meshgrid(x, y)
         Z = f(X, Y)
         ax.contour3D(X, Y, Z, 50, cmap='binary')
+    if (len(projected_points)):
+        pxyz = np.array(projected_points)
+        ax.scatter(pxyz[:, 0], pxyz[:, 1], pxyz[:, 2], color='b')
+
+    if (len(additional_points)):
+        axyz = np.array(additional_points)
+        ax.scatter(axyz[:, 0], axyz[:, 1], axyz[:, 2], color='m')
 
 
 def plot_points_list(list_in=[], pt=5.8):
