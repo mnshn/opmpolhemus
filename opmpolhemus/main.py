@@ -3,7 +3,7 @@ from plot.points import plot_points, plot_points_list, plane_plot
 from handlers.clusters import cluster_opms
 from handlers.plane import plane_maker
 from handlers.post_process import post_process
-from handlers.fit_rectangle import affine_trafo
+from handlers.projection import affine_trafo
 
 import numpy as np
 import matplotlib.pyplot as plt
