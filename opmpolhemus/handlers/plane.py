@@ -29,8 +29,8 @@ def plane_maker(measurements, pcl):
     c = optimal_slopes.x[2]
     n = np.array([-a, -b, 1])
     nnorm = np.linalg.norm(n)
+    n = n / nnorm
     projected_points = []
     for i in points_in:
-        projected_points.append(
-            (i - (np.dot(i, n / nnorm) - c / nnorm) * n / nnorm))
+        projected_points.append((i - (np.dot(i, n) - c / nnorm) * n))
     return [a, b, c], projected_points
