@@ -1,7 +1,8 @@
 from utils.parser import mat_parser
 from plot.points import plot_points, plot_points_list, plane_plot
-from handlers.clusters import opms
-from handlers.plane import plane_maker, post_process
+from handlers.clusters import cluster_opms
+from handlers.plane import plane_maker
+from handlers.post_process import post_process
 from handlers.fit_rectangle import affine_trafo
 
 import numpy as np
@@ -11,17 +12,17 @@ DOUBLE_CLICK_THRESHOLD = 10e-4
 
 test_file = '../db/point.txt'
 
-opm = mat_parser(test_file)
-all_opms = opms(opm)
+opm_raw = mat_parser(test_file)
+all_opms = cluster_opms(opm_raw)
 
 
 def single_opm(i):
-    return list(post_process(all_opms, opm)[i].values())
+    return list(post_process(all_opms, opm_raw)[i].values())
 
 
 for i in range(0, 4):
     slopes, projections = plane_maker(single_opm(i))
-    plane_plot(affine_trafo(slopes, projections)[:-1])
+    plane_plot(affine_trafo(slopes, projections))
     # plot_points(opm,
     #             indices=single_opm(i),
     #             surface_slopes=slopes,
