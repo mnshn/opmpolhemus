@@ -78,7 +78,7 @@ def plane_plot(points):
     ax.set_yticks(major_yticks)
     ax.scatter(xy[:, 0], xy[:, 1])
     ax.grid(which='minor')
-    ax.grid(which='major', alpha=1, color='m')
+    ax.grid(which='major', alpha=0.7, color='k')
     ax.axis('equal')
 
 
