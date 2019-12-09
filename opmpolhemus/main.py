@@ -1,7 +1,7 @@
 from utils.parser import mat_parser
 from plot.points import plot_points, plot_points_list, plane_plot
 from handlers.clusters import opms
-from handlers.plane import plane_maker
+from handlers.plane import plane_maker, post_process
 from handlers.fit_rectangle import affine_trafo
 
 import numpy as np
@@ -16,12 +16,12 @@ all_opms = opms(opm)
 
 
 def single_opm(i):
-    return list(x for y in list(all_opms[i].values()) for x in y)
+    return list(post_process(all_opms, opm)[i].values())
 
 
 for i in range(0, 4):
-    slopes, projections = plane_maker(single_opm(i), opm)
-    plane_plot(affine_trafo(slopes, projections))
+    slopes, projections = plane_maker(single_opm(i))
+    plane_plot(affine_trafo(slopes, projections)[:-1])
     # plot_points(opm,
     #             indices=single_opm(i),
     #             surface_slopes=slopes,
