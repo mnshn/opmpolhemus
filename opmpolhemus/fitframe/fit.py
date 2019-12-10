@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-DELTA = 0.0015
+DELTA = 0.0010
 RIDGE = 0.0025
 XSIZE = 0.0062
 YSIZE = 0.0083
