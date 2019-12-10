@@ -30,7 +30,7 @@ def is_not_part(p_index, K_index, points, pcl, com_threshold):
         com_threshold)
 
 
-def cluster_opms(pcl, start=8, double_click_threshold=10e-4):
+def cluster_opms(pcl, start=8, double_click_threshold=2 * 10e-4):
     output = {}
     K = start
     for i in range(0, OPMS):

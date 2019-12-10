@@ -22,7 +22,7 @@ def single_opm(i):
     return list(post_process(all_opms, opm_raw)[i].values())
 
 
-for i in range(0, 4):
+for i in range(19, 23):
     slopes, projections = plane_maker(single_opm(i))
     plane_points = affine_trafo(slopes, projections)
     error, angle = fitter(plane_points, ANGLE_MESH)
@@ -34,12 +34,14 @@ for i in range(0, 4):
     #             projected_points=projections,
     #             additional_points=[])
 
-# def opm_list():
-#     out = []
-#     for i in list(all_opms.keys()):
-#         out.append(np.array(list(map(lambda x: opm[x], single_opm(i)))))
-#     return np.array(out)
 
-# plot_points_list(opm_list())
+def opm_list():
+    out = []
+    for i in list(all_opms.keys()):
+        out.append(np.array(single_opm(i)))
+    return np.array(out)
+
+
+plot_points_list(opm_list())
 
 plt.show()
