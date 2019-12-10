@@ -27,4 +27,5 @@ def affine_trafo(slopes, points):
     affine = np.vstack((np.matrix.transpose(affine), [1, 1, 1, 1]))
     affine_map = np.matmul(target, np.linalg.inv(affine))
     return list(
-        map(lambda x: np.matmul(affine_map, np.hstack((x, 1)))[0:2], points))
+        map(lambda x: np.matmul(affine_map, np.hstack((x, 1)))[0:2],
+            points)), np.linalg.inv(affine_map)

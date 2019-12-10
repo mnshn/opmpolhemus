@@ -5,32 +5,31 @@ from plot.points import plot_points, plot_points_list, plane_plot
 from cluster.clusters import cluster_opms
 from cluster.process import post_process
 
-from fitframe.plane import plane_maker
-from fitframe.projection import affine_trafo
-from fitframe.fit import FRAME_POINTS, fitter, rotate_frame
+from fitframe.fit import fit_all
 
-import numpy as np
 import matplotlib.pyplot as plt
-
-ANGLE_MESH = 0.1
+import numpy as np
 
 test_file = '../db/point.txt'
 
 opm_raw = mat_parser(test_file)
+opm_clusters = cluster_opms(opm_raw)
+all_opms = post_process(opm_clusters, opm_raw)
+fit_data = fit_all(all_opms)
 
-all_opms = post_process(cluster_opms(opm_raw), opm_raw)
+for i in range(0, 2):
 
-for i in range(0, 5):
-    slopes, projections = plane_maker(all_opms[i])
-    plane_points = affine_trafo(slopes, projections)
-    error, angle = fitter(plane_points, ANGLE_MESH)
-    plane_plot(plane_points, frame_points=rotate_frame(FRAME_POINTS, angle))
+    plane_plot(fit_data[i]['plane-points'],
+               frame_points=fit_data[i]['frame-points'],
+               additional_points=fit_data[i]['sensor-points-plane'])
 
-    # plot_points(opm,
-    #             indices=single_opm(i),
-    #             surface_slopes=slopes,
-    #             projected_points=projections,
-    #             additional_points=[])
+    ind = list(x for y in list(opm_clusters[i].values()) for x in y)
+
+    plot_points(opm_raw,
+                indices=ind,
+                surface_slopes=fit_data[i]['slopes'],
+                projected_points=fit_data[i]['projected-points'],
+                additional_points=fit_data[i]['sensor-points-3d'])
 
 
 def opm_list():
