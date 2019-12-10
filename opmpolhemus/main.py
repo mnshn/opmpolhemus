@@ -10,7 +10,7 @@ from fitframe.fit import FRAME_POINTS, fitter, rotate_frame
 import numpy as np
 import matplotlib.pyplot as plt
 
-DOUBLE_CLICK_THRESHOLD = 10e-4
+ANGLE_MESH = 0.1
 
 test_file = '../db/point.txt'
 
@@ -22,10 +22,10 @@ def single_opm(i):
     return list(post_process(all_opms, opm_raw)[i].values())
 
 
-for i in range(0, 2):
+for i in range(0, 4):
     slopes, projections = plane_maker(single_opm(i))
     plane_points = affine_trafo(slopes, projections)
-    error, angle = fitter(plane_points, 0.1)
+    error, angle = fitter(plane_points, ANGLE_MESH)
     plane_plot(plane_points, frame_points=rotate_frame(FRAME_POINTS, angle))
 
     # plot_points(opm,
