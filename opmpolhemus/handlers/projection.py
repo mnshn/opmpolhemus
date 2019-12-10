@@ -12,7 +12,6 @@ def com(points):
 def affine_trafo(slopes, points):
 
     origin = com(points)
-    points.append(origin)
     a = slopes[0]
     b = slopes[1]
     c = slopes[2]
