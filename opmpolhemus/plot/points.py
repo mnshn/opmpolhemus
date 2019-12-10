@@ -63,7 +63,7 @@ def plot_points_list(list_in=[], pt=5.8):
         ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k, fontsize=12)
 
 
-def plane_plot(points):
+def plane_plot(points, frame_points=[]):
     plot_name = 'point plot, point0={}'.format(points[0])
     xy = np.array(points)
     minor_xticks = np.arange(2 * min(xy[:, 0]), 2 * max(xy[:, 0]), 0.001)
@@ -80,6 +80,9 @@ def plane_plot(points):
     ax.grid(which='minor')
     ax.grid(which='major', alpha=0.7, color='k')
     ax.axis('equal')
+    if len(frame_points):
+        fxy = np.array(frame_points)
+        ax.scatter(fxy[:, 0], fxy[:, 1])
 
 
 # if (__name__ == '__main__'):

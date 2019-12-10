@@ -5,6 +5,8 @@ from handlers.plane import plane_maker
 from handlers.post_process import post_process
 from handlers.projection import affine_trafo
 
+from fitframe.fit import FRAME_POINTS
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -22,7 +24,7 @@ def single_opm(i):
 
 for i in range(0, 4):
     slopes, projections = plane_maker(single_opm(i))
-    plane_plot(affine_trafo(slopes, projections))
+    plane_plot(affine_trafo(slopes, projections), frame_points=FRAME_POINTS)
     # plot_points(opm,
     #             indices=single_opm(i),
     #             surface_slopes=slopes,
