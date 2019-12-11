@@ -22,12 +22,19 @@ def diff_of_com(points):
         return np.inf
 
 
-def is_not_part(p_index, K_index, points, pcl, com_threshold):
+def is_not_part(p_index,
+                K_index,
+                points,
+                pcl,
+                com_threshold=0.01,
+                difference_threshold=0.04):
     points = np.array(list(map(lambda x: pcl[x], points)))
-    return (
-        (p_index > 6) and
-        abs(np.linalg.norm(com(points) - pcl[K_index]) - diff_of_com(points)) >
-        com_threshold)
+    far_from_com = (p_index > 6) and abs(
+        np.linalg.norm(com(points) - pcl[K_index]) -
+        diff_of_com(points)) > com_threshold
+    very_far_from_previous = (p_index > 0) and np.linalg.norm(
+        pcl[K_index] - pcl[K_index - 1]) > difference_threshold
+    return (far_from_com or very_far_from_previous)
 
 
 def cluster_opms(pcl, start=8, double_click_threshold=2 * 10e-4):
@@ -40,7 +47,7 @@ def cluster_opms(pcl, start=8, double_click_threshold=2 * 10e-4):
         while point_index < 15:
             unique_points_so_far = list(
                 map(lambda x: x[0], list(output[i].values())))
-            if is_not_part(point_index, K, unique_points_so_far, pcl, 0.01):
+            if is_not_part(point_index, K, unique_points_so_far, pcl):
                 print('📸 OPM {};'.format(i),
                       '{} corners out of {} points'.format(point_index, j),
                       'ind {} - {}'.format(K - j, K - 1))
