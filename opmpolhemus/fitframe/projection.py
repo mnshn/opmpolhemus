@@ -1,5 +1,4 @@
 import numpy as np
-import scipy
 
 
 def com(points):

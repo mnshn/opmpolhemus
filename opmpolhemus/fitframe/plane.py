@@ -22,6 +22,7 @@ def plane_maker(points_in):
     error_eval = functools.partial(error, points=points_in)
     slopes0 = [0, 0, 0]
     optimal_slopes = optimize.minimize(error_eval, slopes0)
+    optimal_error = optimal_slopes.fun
     a = optimal_slopes.x[0]
     b = optimal_slopes.x[1]
     c = optimal_slopes.x[2]
@@ -29,6 +30,12 @@ def plane_maker(points_in):
     nnorm = np.linalg.norm(n)
     n = n / nnorm
     projected_points = []
+    Oz = np.array([0, 0, c])
+    # Or the homogeneous way. Gives same result
+    # T = np.array([[1, 0, 0, a], [0, 1, 0, b], [0, 0, 1, -1], [-a, -b, 1, 0]])
+    # Tinv = np.linalg.inv(T)
     for i in points_in:
-        projected_points.append((i - (np.dot(i, n) - c / nnorm) * n))
-    return [a, b, c], projected_points
+        # B = np.array([i[0], i[1], i[2], c])
+        # projected_points.append(np.matmul(Tinv, B)[0:3])
+        projected_points.append(i - (np.dot(i - Oz, n) * n))
+    return [a, b, c], projected_points, optimal_error

@@ -17,19 +17,20 @@ opm_clusters = cluster_opms(opm_raw)
 all_opms = post_process(opm_clusters, opm_raw)
 fit_data = fit_all(all_opms)
 
-for i in range(0, 12):
-
+for i in range(0, 3):
     plane_plot(fit_data[i]['plane-points'],
                frame_points=fit_data[i]['frame-points'],
-               additional_points=fit_data[i]['sensor-points-plane'])
+               additional_points=fit_data[i]['sensor-points-plane'],
+               name_label=i)
 
-    # ind = list(x for y in list(opm_clusters[i].values()) for x in y)
+    ind = list(x for y in list(opm_clusters[i].values()) for x in y)
 
-    # plot_points(opm_raw,
-    #             indices=ind,
-    #             surface_slopes=fit_data[i]['slopes'],
-    #             projected_points=fit_data[i]['projected-points'],
-    #             additional_points=fit_data[i]['sensor-points-3d'])
+    plot_points(opm_raw,
+                indices=ind,
+                surface_slopes=fit_data[i]['slopes'],
+                projected_points=fit_data[i]['projected-points'],
+                additional_points=fit_data[i]['sensor-points-3d'],
+                name_label=i)
 
 
 def opm_list():
@@ -39,6 +40,6 @@ def opm_list():
     return np.array(out)
 
 
-# plot_points_list(opm_list())
+plot_points_list(opm_list())
 
 plt.show()

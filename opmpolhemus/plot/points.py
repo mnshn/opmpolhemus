@@ -9,10 +9,11 @@ def plot_points(pcl,
                 projected_points=[],
                 additional_points=[],
                 pt=6.0,
-                c='r'):
+                c='r',
+                name_label=''):
     print('🎨 Making some plots')
-    plot_name = 'point plot,  # points={}, range: {}-{}'.format(
-        len(indices), min(indices), max(indices))
+    plot_name = 'point plot {},  # points={}, range: {}-{}'.format(
+        name_label, len(indices), min(indices), max(indices))
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
     ax.grid(False)
@@ -51,9 +52,10 @@ def plot_points(pcl,
         ax.scatter(axyz[:, 0], axyz[:, 1], axyz[:, 2], color='m')
 
 
-def plot_points_list(list_in=[], pt=5.8):
+def plot_points_list(list_in=[], pt=5.8, name_label=''):
     print('🎨 Making some plots')
-    plot_name = 'point plot, #point sets={}'.format(len(list_in))
+    plot_name = 'point plot {}, #point sets={}'.format(name_label,
+                                                       len(list_in))
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
     colors = [plt.cm.prism(each) for each in np.linspace(0, 1, len(list_in))]
@@ -63,8 +65,8 @@ def plot_points_list(list_in=[], pt=5.8):
         ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k, fontsize=12)
 
 
-def plane_plot(points, frame_points=[], additional_points=[]):
-    plot_name = 'point plot, point0={}'.format(points[0])
+def plane_plot(points, frame_points=[], additional_points=[], name_label=''):
+    plot_name = 'point plot {}'.format(name_label)
     xy = np.array(points)
     minor_xticks = np.arange(2 * min(xy[:, 0]), 2 * max(xy[:, 0]), 0.001)
     minor_yticks = np.arange(2 * min(xy[:, 1]), 2 * max(xy[:, 1]), 0.001)

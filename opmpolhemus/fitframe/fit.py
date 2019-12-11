@@ -4,13 +4,16 @@ import numpy as np
 from .plane import plane_maker
 from .projection import affine_trafo
 
-DELTA = 0.0010
-RIDGE = 0.0025
-XSIZE = 0.0062
-YSIZE = 0.0083
-YCELL = 0.0019
+from constants import Constants
 
-ANGLE_MESH = 0.1
+DELTA = Constants.PEN_POINT_SIZE
+RIDGE = Constants.RIDGE_SIZE
+XSIZE = Constants.HOLDER_XSIZE
+YSIZE = Constants.HOLDER_YSIZE
+YCELL = Constants.CELL_POS_Y
+ZCELL = Constants.CELL_POS_Z
+
+ANGLE_MESH = Constants.ANGLE_FIT_MESH
 
 FRAME_POINTS = [(RIDGE + DELTA, YSIZE + DELTA), (XSIZE + DELTA, RIDGE + DELTA),
                 (XSIZE + DELTA, -(RIDGE + DELTA)),
@@ -21,7 +24,6 @@ FRAME_POINTS = [(RIDGE + DELTA, YSIZE + DELTA), (XSIZE + DELTA, RIDGE + DELTA),
                 (-(RIDGE + DELTA), YSIZE + DELTA)]
 
 SENSOR_POINTS = [(0.0, YCELL), (0.0, -YCELL)]
-SENSOR_Z = 0.005
 
 
 def nearest(point, set):
@@ -65,18 +67,26 @@ def fit_all(obj, angle_mesh=0.1):
     obj_out = {}
     for i in obj.keys():
         obj_out[i] = {}
-        slopes, projections = plane_maker(obj[i])
+        slopes, projections, plane_fit_error = plane_maker(obj[i])
+        plane_points, affine_map = affine_trafo(slopes, projections)
+        frame_fit_error, angle = fitter(plane_points, angle_mesh)
+        sensor_points_plane = rotate_frame(SENSOR_POINTS, angle)
+        sensor_points_space = list(
+            map(lambda x: np.matmul(affine_map, np.append(x, [ZCELL, 1]))[0:3],
+                sensor_points_plane))
+        sensor_points_frame_3d = list(
+            map(lambda x: np.matmul(affine_map, np.append(x, [0, 1]))[0:3],
+                sensor_points_plane))
+        frame_center_of_mass = np.matmul(affine_map, np.array(
+            (0, 0, 0, 1)))[0:3]
+        obj_out[i]['sensor-points-3d'] = sensor_points_space
+        obj_out[i]['frame-fit-error'] = frame_fit_error
+        obj_out[i]['plane-fit-error'] = plane_fit_error
+        obj_out[i]['sensor-points-frame-3d'] = sensor_points_frame_3d
+        obj_out[i]['sensor-points-plane'] = sensor_points_plane
         obj_out[i]['slopes'] = slopes
         obj_out[i]['projected-points'] = projections
-        plane_points, affine_map = affine_trafo(slopes, projections)
         obj_out[i]['plane-points'] = plane_points
-        error, angle = fitter(plane_points, angle_mesh)
         obj_out[i]['frame-points'] = rotate_frame(FRAME_POINTS, angle)
-        sensor_points = rotate_frame(SENSOR_POINTS, angle)
-        obj_out[i]['sensor-points-plane'] = sensor_points
-        sensor_points = list(
-            map(
-                lambda x: np.matmul(affine_map, np.append(x, [SENSOR_Z, 1]))[
-                    0:3], sensor_points))
-        obj_out[i]['sensor-points-3d'] = sensor_points
+        obj_out[i]['com-base-frame'] = frame_center_of_mass
     return obj_out
