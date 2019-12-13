@@ -3,6 +3,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def axisEqual3D(ax):
+    extents = np.array(
+        [getattr(ax, 'get_{}lim'.format(dim))() for dim in 'xyz'])
+    sz = extents[:, 1] - extents[:, 0]
+    centers = np.mean(extents, axis=1)
+    maxsize = max(abs(sz))
+    r = maxsize / 2
+    for ctr, dim in zip(centers, 'xyz'):
+        getattr(ax, 'set_{}lim'.format(dim))(ctr - r, ctr + r)
+
+
 def plot_points(pcl,
                 indices=[],
                 surface_slopes=[],
@@ -50,6 +61,7 @@ def plot_points(pcl,
     if (len(additional_points)):
         axyz = np.array(additional_points)
         ax.scatter(axyz[:, 0], axyz[:, 1], axyz[:, 2], color='m')
+    axisEqual3D(ax)
 
 
 def plot_points_list(list_in=[], pt=5.8, name_label=''):

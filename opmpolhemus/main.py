@@ -10,27 +10,27 @@ from fitframe.fit import fit_all
 import matplotlib.pyplot as plt
 import numpy as np
 
-test_file = '../db/point.txt'
+test_file = '../db/proper01/point.txt'
 
 opm_raw = mat_parser(test_file)
 opm_clusters = cluster_opms(opm_raw)
 all_opms = post_process(opm_clusters, opm_raw)
 fit_data = fit_all(all_opms)
 
-for i in range(0, 3):
+for i in range(4, 12):
     plane_plot(fit_data[i]['plane-points'],
                frame_points=fit_data[i]['frame-points'],
                additional_points=fit_data[i]['sensor-points-plane'],
                name_label=i)
 
-    ind = list(x for y in list(opm_clusters[i].values()) for x in y)
+    # ind = list(x for y in list(opm_clusters[i].values()) for x in y)
 
-    plot_points(opm_raw,
-                indices=ind,
-                surface_slopes=fit_data[i]['slopes'],
-                projected_points=fit_data[i]['projected-points'],
-                additional_points=fit_data[i]['sensor-points-3d'],
-                name_label=i)
+    # plot_points(opm_raw,
+    #             indices=ind,
+    #             surface_slopes=fit_data[i]['slopes'],
+    #             projected_points=fit_data[i]['projected-points'],
+    #             additional_points=fit_data[i]['sensor-points-3d'],
+    #             name_label=i)
 
 
 def opm_list():
