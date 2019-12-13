@@ -6,7 +6,7 @@ cell for all OPMs that are measured by a polhemus device.
 ## Hardware
 The OPM device is the 
 *[QZFM Gen-2](https://quspin.com/products-qzfm/)* produced by QuSpin. The
-dimesions that are lister
+dimesions that are listed
 [here](http://quspin.com/wp-content/uploads/2016/08/Gen-2.jpg) enter the code in
 [`constants.py`](https://github.com/paulmoonshine/opmpolhemus/blob/master/opmpolhemus/constants.py).
 
@@ -28,4 +28,14 @@ on this cap. One such base frame looks like, schematically, like this:
   v     +---------xxxxx---------+
                  OxxxxxO
 ```
+*Base frame of OPM holder. Dimensions are in millimeters.*
 
+In this diagram, the `x`'s mark the location of the holder arms that are to
+encapsulate the opm. These arms extend outward in direction normal to the screen.
+The rectangle drawn by the `-` lines and the `+` on the cornerss is the base
+frame that sits close to the scalp and is the resting frame of the OPM. Finally,
+the eight `O` points are the reference points that we mark with the polhemus.
+
+With these measured points (`N = 8 x # of OPMS` in total) as input in the form of a
+`[N,3]` array, the location of the sensor within the OPM is computed for every
+OPM.
