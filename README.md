@@ -8,7 +8,7 @@ This is a necessary step in solving the *forward problem*.
 
 The OPM device is the 
 *[QZFM Gen-2](https://quspin.com/products-qzfm/)* produced by QuSpin. The
-dimesions that are listed
+dimensions that are listed
 [here](http://quspin.com/wp-content/uploads/2016/08/Gen-2.jpg) enter the code in
 [`constants.py`](https://github.com/paulmoonshine/opmpolhemus/blob/master/opmpolhemus/constants.py).
 
@@ -34,7 +34,7 @@ on this cap. One such base frame looks, schematically, like this:
 
 In this diagram, the `x`'s mark the location of the holder arms that are to
 encapsulate the OPM ([see here](https://quspin.com/wp-content/uploads/2019/05/Holder-with-base-280x300.png)). These arms extend outward in direction normal to the screen.
-The rectangle drawn by the `-` lines and the `+` on the cornerss is the base
+The rectangle drawn by the `-` lines and the `+` on the corners is the base
 frame that sits close to the scalp and is the resting frame of the OPM. Finally,
 the eight `O` points are the reference points that we mark with the polhemus ([we
 use this device](https://polhemus.com/scanning-digitizing/digitizing-products/)).
