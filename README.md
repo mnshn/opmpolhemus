@@ -14,7 +14,7 @@ dimesions that are listed
 
 Currently, [this](https://quspin.com/experimental-meg-cap/) cap is used. To
 locate the sensors, we tap 8 specific points on the base frame of the holders that are
-on this cap. One such base frame looks like, schematically, like this: 
+on this cap. One such base frame looks, schematically, like this: 
 ```
         <-------+  16.6 +------->
 
@@ -33,7 +33,7 @@ on this cap. One such base frame looks like, schematically, like this:
 *Base frame of OPM holder. Dimensions are in millimeters.*
 
 In this diagram, the `x`'s mark the location of the holder arms that are to
-encapsulate the OPM. These arms extend outward in direction normal to the screen.
+encapsulate the OPM ([see here](https://quspin.com/wp-content/uploads/2019/05/Holder-with-base-280x300.png)). These arms extend outward in direction normal to the screen.
 The rectangle drawn by the `-` lines and the `+` on the cornerss is the base
 frame that sits close to the scalp and is the resting frame of the OPM. Finally,
 the eight `O` points are the reference points that we mark with the polhemus ([we
