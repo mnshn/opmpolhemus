@@ -13,3 +13,4 @@ class Constants:
     CELL_POS_Y = 0.0019
     CELL_POS_Z = 0.005
     ANGLE_FIT_MESH = 0.1
+    OPM_DIFFERENCE_THRESHOLD = 0.01

@@ -64,7 +64,7 @@ def plot_points(pcl,
     axisEqual3D(ax)
 
 
-def plot_points_list(list_in=[], pt=5.8, name_label=''):
+def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
     print('🎨 Making some plots')
     plot_name = 'point plot {}, #point sets={}'.format(name_label,
                                                        len(list_in))
@@ -75,6 +75,9 @@ def plot_points_list(list_in=[], pt=5.8, name_label=''):
         xyz = list_in[k]
         ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=col, s=pt)
         ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k, fontsize=12)
+    if len(additional_points):
+        axyz = np.array(additional_points)
+        ax.scatter(axyz[:, 0], axyz[:, 1], axyz[:, 2], color='r', s=pt)
     axisEqual3D(ax)
 
 
