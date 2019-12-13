@@ -16,16 +16,16 @@ on this cap. One such base frame looks like, schematically, like this:
 ```
         <-------+  16.6 +------->
 
-                 O+---+O
-  ^     +-----------------------+
+                 OxxxxxO
+  ^     +---------xxxxx---------+
   |     |                       |
   +    O|                       |O
-       ++                       ++
- 12.4  ||                       ||
-       ++                       ++
+       xx                       xx
+ 12.4  xx                       xx
+       xx                       xx
   +    O|                       |O
   |     |                       |
-  v     +-----------------------+
-                 O+---+O
+  v     +---------xxxxx---------+
+                 OxxxxxO
 ```
 
