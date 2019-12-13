@@ -35,8 +35,12 @@ for i in range(4, 12):
 
 def opm_list():
     out = []
+    sensors = []
     for i in list(all_opms.keys()):
         out.append(np.array(all_opms[i]))
+        sensors.append(fit_data[i]['sensor-points-3d'])
+    sensors = np.array(list(x for y in sensors for x in y))
+    out.append(sensors)
     return np.array(out)
 
 

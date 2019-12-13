@@ -75,6 +75,7 @@ def plot_points_list(list_in=[], pt=5.8, name_label=''):
         xyz = list_in[k]
         ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=col, s=pt)
         ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k, fontsize=12)
+    axisEqual3D(ax)
 
 
 def plane_plot(points, frame_points=[], additional_points=[], name_label=''):

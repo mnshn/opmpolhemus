@@ -45,33 +45,32 @@ def cluster_opms(pcl,
                  double_click_threshold=Constants.DOUBLE_CLICK_THRESHOLD):
     output = {}
     pcl_index = start
-    i = -1
+    opm_index = -1
     while pcl_index < len(pcl):
-        i += 1
-        output[i] = {}
+        opm_index += 1
+        output[opm_index] = {}
         unique_pen_click = 0
         pen_click = 0
         while pen_click < Constants.MAX_POINTS_PER_OPM and pcl_index < len(
                 pcl):
             unique_points_so_far = list(
-                map(lambda x: x[0], list(output[i].values())))
+                map(lambda x: x[0], list(output[opm_index].values())))
             if is_not_part(unique_pen_click, pcl_index, unique_points_so_far,
                            pcl):
-                print(
-                    '📸 OPM {};'.format(i),
-                    '{} corners out of {} points'.format(
-                        unique_pen_click, pen_click),
-                    'ind {} - {}'.format(pcl_index - pen_click, pcl_index - 1))
                 break
             else:
                 for L in range(0, unique_pen_click):
-                    if np.linalg.norm(pcl[pcl_index] - pcl[output[i][L][0]]
-                                      ) < double_click_threshold:
-                        output[i][L].append(pcl_index)
+                    if np.linalg.norm(pcl[pcl_index] - pcl[
+                            output[opm_index][L][0]]) < double_click_threshold:
+                        output[opm_index][L].append(pcl_index)
                         break
                 else:
-                    output[i][unique_pen_click] = [pcl_index]
+                    output[opm_index][unique_pen_click] = [pcl_index]
                     unique_pen_click += 1
                 pen_click += 1
             pcl_index += 1
+        print(
+            '📸 OPM {};'.format(opm_index),
+            '{} corners out of {} points'.format(unique_pen_click, pen_click),
+            'ind {} - {}'.format(pcl_index - pen_click, pcl_index - 1))
     return output

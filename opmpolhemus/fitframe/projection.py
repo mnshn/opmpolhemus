@@ -8,6 +8,13 @@ def com(points):
         return np.inf
 
 
+def sign(flt):
+    if flt < 0:
+        return -1
+    else:
+        return 1
+
+
 def affine_trafo(slopes, points):
 
     origin = com(points)
@@ -19,6 +26,8 @@ def affine_trafo(slopes, points):
     vec = vec / np.linalg.norm(vec)
     normal = np.array([-a, -b, 1])
     normal = normal / np.linalg.norm(normal)
+    normal_orientation = sign(np.dot(origin / np.linalg.norm(origin), normal))
+    normal = normal_orientation * normal
     V = np.cross(vec, normal)
     target = np.matrix.transpose(
         np.array([[0, 0, 0, 1], [1, 0, 0, 1], [0, 1, 0, 1], [0, 0, 1, 1]]))
