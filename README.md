@@ -13,7 +13,7 @@ dimesions that are lister
 Currently, [this](https://quspin.com/experimental-meg-cap/) cap is used. To
 locate the sensors, we tap 8 specific points on the base frame of the holders that are
 on this cap. One such base frame looks like, schematically, like this: 
-
+```
         <-------+  16.6 +------->
 
                  O+---+O
@@ -27,5 +27,5 @@ on this cap. One such base frame looks like, schematically, like this:
   |     |                       |
   v     +-----------------------+
                  O+---+O
-
+```
 
