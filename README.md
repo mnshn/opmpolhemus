@@ -38,6 +38,6 @@ The rectangle drawn by the `-` lines and the `+` on the cornerss is the base
 frame that sits close to the scalp and is the resting frame of the OPM. Finally,
 the eight `O` points are the reference points that we mark with the polhemus ([we
 use this device](https://polhemus.com/scanning-digitizing/digitizing-products/)).
-With these measured points (`N = 8 x # of OPMS` in total) as input in the form of a
+With these measured points (`N = 8 x # of OPMS` in total) as input in the form of an
 `[N,3]` array, the location of the sensor within the OPM is computed for every
 OPM.
