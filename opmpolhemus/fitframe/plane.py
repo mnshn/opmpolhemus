@@ -31,11 +31,6 @@ def plane_maker(points_in):
     n = n / nnorm
     projected_points = []
     Oz = np.array([0, 0, c])
-    # Or the homogeneous way. Gives same result
-    # T = np.array([[1, 0, 0, a], [0, 1, 0, b], [0, 0, 1, -1], [-a, -b, 1, 0]])
-    # Tinv = np.linalg.inv(T)
     for i in points_in:
-        # B = np.array([i[0], i[1], i[2], c])
-        # projected_points.append(np.matmul(Tinv, B)[0:3])
         projected_points.append(i - (np.dot(i - Oz, n) * n))
     return [a, b, c], projected_points, optimal_error

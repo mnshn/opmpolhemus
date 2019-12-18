@@ -10,7 +10,8 @@ class Constants:
     RIDGE_SIZE = 0.0025
     HOLDER_XSIZE = 0.0062
     HOLDER_YSIZE = 0.0083
-    CELL_POS_Y = 0.0019
-    CELL_POS_Z = 0.005
+    HOLDER_ZSIZE = 0.0122
+    CELL_POS_Y = 0  # when we solve xy orientation: 0.0019
+    CELL_POS_Z = 0.0065
     ANGLE_FIT_MESH = 0.1
     OPM_DIFFERENCE_THRESHOLD = 0.01

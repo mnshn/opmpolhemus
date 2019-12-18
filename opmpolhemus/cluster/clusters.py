@@ -69,8 +69,4 @@ def cluster_opms(pcl,
                     unique_pen_click += 1
                 pen_click += 1
             pcl_index += 1
-        # print(
-        #     '📸 OPM {};'.format(opm_index),
-        #     '{} corners out of {} points'.format(unique_pen_click, pen_click),
-        #     'ind {} - {}'.format(pcl_index - pen_click, pcl_index - 1))
     return output
