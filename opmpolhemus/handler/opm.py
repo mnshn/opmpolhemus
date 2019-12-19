@@ -5,8 +5,6 @@ from fitframe.projection import affine_trafo
 from fitframe.fit import fitter
 from constants import Constants
 from .frame import Frame
-import sys
-sys.path.append("..")
 
 
 def rotate(point, theta):

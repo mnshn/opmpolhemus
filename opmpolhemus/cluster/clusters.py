@@ -4,8 +4,6 @@ import copy
 
 from constants import Constants
 
-OPMS = Constants.TOTAL_OPMS
-
 
 def com(points):
     try:

@@ -1,6 +1,4 @@
 from constants import Constants
-import sys
-sys.path.append("..")
 
 DELTA = Constants.PEN_POINT_SIZE
 RIDGE = Constants.RIDGE_SIZE
