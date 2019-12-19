@@ -36,7 +36,7 @@ frames we allow for are dubbed: *base* and *top*, and are defined as follows:
 ```
 *frame=base. Dimensions are in millimeters.*
 
-In this diagram, the `x`'s mark the location of the holder arms that are to
+In this diagram, an `x` marks the location of the holder arms that are to
 encapsulate the OPM 
 ([see here](https://quspin.com/wp-content/uploads/2019/05/Holder-with-base-280x300.png)).
 These arms extend outward in direction normal to the screen.
@@ -66,6 +66,7 @@ slightly higher (`1.5mm`) than the opm bottom, as noted in the diagram.
                    xxxxx
 ```
 *frame=top. Dimensions in millimeters.*
+
 For this frame style, we mark only the four top corners of the OPM, at the top
 face of the OPM at `z=24mm`. These are four points, obviously. As there is not
 real firm fixed base the polhemus style can rest on for this method, we advise
