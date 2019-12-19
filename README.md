@@ -13,8 +13,12 @@ dimensions that are listed
 [`constants.py`](https://github.com/paulmoonshine/opmpolhemus/blob/master/opmpolhemus/constants.py).
 
 Currently, [this](https://quspin.com/experimental-meg-cap/) cap is used. To
-locate the sensors, we tap 8 specific points on the base frame of the holders that are
-on this cap. One such base frame looks, schematically, like this: 
+digitize the location of the sensor, we tap specific points on or around the OPM. Currentrly, we accomodate two sets of
+specific points to tap, from which this program then computes the location of
+the sensor. Such a set of specific points will be called a *frame*, and the
+frames we allow for are dubbed: *base* and *top*, and are defined as follows:
+
+### frame: base
 ```
         <-------+  16.6 +------->
 
@@ -23,21 +27,50 @@ on this cap. One such base frame looks, schematically, like this:
   |     |                       |
   +    O|                       |O
        xx                       xx
- 12.4  xx                       xx
+ 12.4  xx         z=1.5         xx
        xx                       xx
   +    O|                       |O
   |     |                       |
   v     +---------xxxxx---------+
                  OxxxxxO
 ```
-*Base frame of OPM holder. Dimensions are in millimeters.*
+*frame=base. Dimensions are in millimeters.*
 
 In this diagram, the `x`'s mark the location of the holder arms that are to
-encapsulate the OPM ([see here](https://quspin.com/wp-content/uploads/2019/05/Holder-with-base-280x300.png)). These arms extend outward in direction normal to the screen.
+encapsulate the OPM 
+([see here](https://quspin.com/wp-content/uploads/2019/05/Holder-with-base-280x300.png)).
+These arms extend outward in direction normal to the screen.
 The rectangle drawn by the `-` lines and the `+` on the corners is the base
 frame that sits close to the scalp and is the resting frame of the OPM. Finally,
 the eight `O` points are the reference points that we mark with the polhemus ([we
 use this device](https://polhemus.com/scanning-digitizing/digitizing-products/)).
-With these measured points (`N = 8 x # of OPMS` in total) as input in the form of an
+With these measured points (`N = 8 x # of OPMS` in total for frame=top) as input in the form of an
 `[N,3]` array, the location of the sensor within the OPM is computed for every
-OPM.
+OPM. Because of the thickness of the baseframe, the reference points *O* sit
+slightly higher (`1.5mm`) than the opm bottom, as noted in the diagram.
+
+### frame: top
+```
+        <-------+  16.6 +------->
+
+                   xxxxx
+   ^     +---------xxxxx---------+
+   |     |O                     O|
+   +     |                       |
+        xx                       xx
+  12.4  xx         z=24.0        xx
+        xx                       xx
+   +     |                       |
+   |     |O                     O|
+   v     +---------xxxxx---------+
+                   xxxxx
+```
+*frame=top. Dimensions in millimeters.*
+For this frame style, we mark only the four top corners of the OPM, at the top
+face of the OPM at `z=24mm`. These are four points, obviously. As there is not
+real firm fixed base the polhemus style can rest on for this method, we advise
+to do this measurement twice, that is, to go clock-wise and perform a total of
+`8` measurements, tapping every corner twice. The program will recognize this
+and average over very nearby points (also for the case of accidental
+double-clicks).
+
