@@ -23,12 +23,12 @@ def diff_of_com(points):
         return np.inf
 
 
-def is_not_part(unique_pen_click,
-                pcl_index,
-                points,
-                pcl,
-                com_threshold=Constants.COM_THRESHOLD,
-                distance_threshold=Constants.DISTANCE_THRESHOLD):
+def next_opm(unique_pen_click,
+             pcl_index,
+             points,
+             pcl,
+             com_threshold=Constants.COM_THRESHOLD,
+             distance_threshold=Constants.DISTANCE_THRESHOLD):
     points = np.array(list(map(lambda x: pcl[x], points)))
     far_from_com = (unique_pen_click > 6) and abs(
         np.linalg.norm(com(points) - pcl[pcl_index]) -
@@ -53,8 +53,8 @@ def cluster_opms(pcl,
                 pcl):
             unique_points_so_far = list(
                 map(lambda x: x[0], list(output[opm_index].values())))
-            if is_not_part(unique_pen_click, pcl_index, unique_points_so_far,
-                           pcl):
+            if next_opm(unique_pen_click, pcl_index, unique_points_so_far,
+                        pcl):
                 break
             else:
                 for L in range(0, unique_pen_click):

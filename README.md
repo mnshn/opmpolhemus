@@ -12,8 +12,9 @@ dimensions that are listed
 [here](http://quspin.com/wp-content/uploads/2016/08/Gen-2.jpg) enter the code in
 [`constants.py`](https://github.com/paulmoonshine/opmpolhemus/blob/master/opmpolhemus/constants.py).
 
-for digitizing the points from which we compute the cell's locations, we
-use [this device](https://polhemus.com/scanning-digitizing/digitizing-products/))
+For digitizing the points from which we compute the cell's locations, we
+use [this
+device](https://polhemus.com/scanning-digitizing/digitizing-products/).
 
 Currently, [this](https://quspin.com/experimental-meg-cap/) cap is used. To
 digitize the location of the sensor, we tap specific points on or around the OPM. Currently, we accommodate two sets of
