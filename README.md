@@ -12,8 +12,11 @@ dimensions that are listed
 [here](http://quspin.com/wp-content/uploads/2016/08/Gen-2.jpg) enter the code in
 [`constants.py`](https://github.com/paulmoonshine/opmpolhemus/blob/master/opmpolhemus/constants.py).
 
+for digitizing the points from which we compute the cell's locations, we
+use [this device](https://polhemus.com/scanning-digitizing/digitizing-products/))
+
 Currently, [this](https://quspin.com/experimental-meg-cap/) cap is used. To
-digitize the location of the sensor, we tap specific points on or around the OPM. Currentrly, we accomodate two sets of
+digitize the location of the sensor, we tap specific points on or around the OPM. Currently, we accommodate two sets of
 specific points to tap, from which this program then computes the location of
 the sensor. Such a set of specific points will be called a *frame*, and the
 frames we allow for are dubbed: *base* and *top*, and are defined as follows:
@@ -42,12 +45,11 @@ encapsulate the OPM
 These arms extend outward in direction normal to the screen.
 The rectangle drawn by the `-` lines and the `+` on the corners is the base
 frame that sits close to the scalp and is the resting frame of the OPM. Finally,
-the eight `O` points are the reference points that we mark with the polhemus ([we
-use this device](https://polhemus.com/scanning-digitizing/digitizing-products/)).
+the eight `O` points are the reference points that we mark with the polhemus.
 With these measured points (`N = 8 x # of OPMS` in total for frame=top) as input in the form of an
 `[N,3]` array, the location of the sensor within the OPM is computed for every
-OPM. Because of the thickness of the baseframe, the reference points *O* sit
-slightly higher (`1.5mm`) than the opm bottom, as noted in the diagram.
+OPM. Because of the thickness of the base frame, the reference points *O* sit
+slightly higher (`1.5mm`) than the OPM bottom, as noted in the diagram.
 
 ### frame: top
 ```
@@ -74,4 +76,3 @@ to do this measurement twice, that is, to go clock-wise and perform a total of
 `8` measurements, tapping every corner twice. The program will recognize this
 and average over very nearby points (also for the case of accidental
 double-clicks).
-
