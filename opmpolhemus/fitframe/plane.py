@@ -1,6 +1,7 @@
 import numpy as np
 from scipy import optimize
 import functools
+import random
 
 
 def plane_maker(points_in):
@@ -20,9 +21,23 @@ def plane_maker(points_in):
         return result
 
     error_eval = functools.partial(error, points=points_in)
-    slopes0 = [0, 0, 0]
-    optimal_slopes = optimize.minimize(error_eval, slopes0)
-    optimal_error = optimal_slopes.fun
+    tries = 0
+    maxTries = 15
+    optimal_error = np.inf
+    error_mesh = 10e-6
+    error_mem = np.inf
+    while (tries < maxTries and optimal_error > error_mesh):
+        tries += 1
+        slopes0 = [
+            random.uniform(-5, 5),
+            random.uniform(-5, 5),
+            random.uniform(-5, 5)
+        ]
+        tries_slopes = optimize.minimize(error_eval, slopes0)
+        optimal_error = tries_slopes.fun
+        if (optimal_error < error_mem):
+            error_mem = optimal_error
+            optimal_slopes = tries_slopes
     a = optimal_slopes.x[0]
     b = optimal_slopes.x[1]
     c = optimal_slopes.x[2]

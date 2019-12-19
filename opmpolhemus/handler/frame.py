@@ -27,7 +27,7 @@ class Frame():
             self.order = 4
             self.frame = [(-XSIZE, YSIZE), (XSIZE, YSIZE), (XSIZE, -YSIZE),
                           (-XSIZE, -YSIZE)]
-            self.sensor = (0.0, YCELL, ZSIZE - ZCELL)
+            self.sensor = (0.0, YCELL, -(ZSIZE - ZCELL))
 
     def __repr__(self):
         return '{} frame of {} points'.format(self.style, self.order)

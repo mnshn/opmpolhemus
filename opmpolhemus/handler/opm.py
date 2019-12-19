@@ -22,42 +22,23 @@ def rotate_frame(set, theta):
 
 class OPM:
     def __init__(self, data, style='base'):
-        frame = Frame(style)
+        frame = Frame(style=style)
         self.data = data
         self.pre_frame = frame
         self.frame = frame.frame
-
-    # returns (slopes of plane fit, point projections on plane, fit error)
-    def plane(self):
-        return plane_maker(self.data)
-
-    # returns point (projections in 3d, the affine map used)
-    def plane_points(self):
-        return affine_trafo(*self.plane()[0:2])
-
-    # returns (the best fit angle of fitting points to frame, fit error)
-    def frame_fit_angle(self):
-        return fitter(self.plane_points()[0], Constants.ANGLE_FIT_MESH,
-                      self.pre_frame.frame)
-
-    # the frame in the plane, rotated by the best angle
-    def frame_fit(self):
-        return rotate_frame(self.frame, self.frame_fit_angle()[1])
-
-    # the sensor point in 2D
-    def sensor_plane(self):
-        return rotate_frame([self.pre_frame.sensor[0:2]],
-                            self.frame_fit_angle()[1])
-
-    # returns the sensor point in 3D
-    def sensor(self):
-        return np.matmul(
-            self.plane_points()[1],
-            np.append(self.sensor_plane()[0],
+        self.slopes, self.projections, self.fit_error = plane_maker(data)
+        self.plane_points, self.affine_map = affine_trafo(
+            self.slopes, self.projections)
+        self.frame_fit_angle, self.frame_fit_error = fitter(
+            self.slopes, Constants.ANGLE_FIT_MESH, self.pre_frame.frame)
+        self.frame_fit = rotate_frame(self.frame, self.frame_fit_angle)
+        self.sensor_plane = rotate_frame([self.pre_frame.sensor[0:2]],
+                                         self.frame_fit_angle)
+        self.sensor = np.matmul(
+            self.affine_map,
+            np.append(self.sensor_plane[0],
                       [self.pre_frame.sensor[2], 1]))[0:3]
-
-    def com(self):
-        return np.matmul(self.plane_points()[1], np.array((0, 0, 0, 1)))[0:3]
+        self.com = np.matmul(self.affine_map, np.array((0, 0, 0, 1)))[0:3]
 
     def __repr__(self):
         return 'OPM with com at {}'.format(self.com())

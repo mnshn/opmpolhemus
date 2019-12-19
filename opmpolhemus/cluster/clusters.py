@@ -30,7 +30,7 @@ def next_opm(unique_pen_click,
              com_threshold=Constants.COM_THRESHOLD,
              distance_threshold=Constants.DISTANCE_THRESHOLD):
     points = np.array(list(map(lambda x: pcl[x], points)))
-    far_from_com = (unique_pen_click > 6) and abs(
+    far_from_com = (unique_pen_click > 3) and abs(
         np.linalg.norm(com(points) - pcl[pcl_index]) -
         diff_of_com(points)) > com_threshold
     very_far_from_previous = (unique_pen_click > 0) and np.linalg.norm(
