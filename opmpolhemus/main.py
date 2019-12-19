@@ -22,18 +22,18 @@ all_opms = make_clusters(opm_raw)
 
 for i in range(4, 12):
     opm = OPM(all_opms[i])
-    plane_plot(opm.plane_points,
-               frame_points=opm.frame,
-               additional_points=opm.sensor_plane,
+    plane_plot(opm.plane_points()[0],
+               frame_points=opm.frame_fit(),
+               additional_points=opm.sensor_plane(),
                name_label=i)
 
-    # ind = list(x for y in list(cluster_opms(opm_raw)[i].values()) for x in y)
-    # plot_points(opm_raw,
-    #             indices=ind,
-    #             surface_slopes=opm.slopes,
-    #             projected_points=opm.projections,
-    #             additional_points=opm.sensor_space,
-    #             name_label=i)
+    ind = list(x for y in list(cluster_opms(opm_raw)[i].values()) for x in y)
+    plot_points(opm_raw,
+                indices=ind,
+                surface_slopes=opm.plane()[0],
+                projected_points=opm.plane()[1],
+                additional_points=[opm.sensor()],
+                name_label=i)
 
 
 def opm_list():
@@ -47,8 +47,7 @@ def sensor_list():
     sensors = []
     for i in range(0, len(all_opms)):
         opm = OPM(all_opms[i])
-        sensors.append(opm.sensor_space)
-    sensors = np.array(list(x for y in sensors for x in y))
+        sensors.append(opm.sensor())
     return sensors
 
 

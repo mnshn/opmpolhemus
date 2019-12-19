@@ -25,29 +25,41 @@ def rotate_frame(set, theta):
 class OPM:
     def __init__(self, data, style='base'):
         frame = Frame(style)
-        slopes, projections, plane_fit_error = plane_maker(data)
-        plane_points, affine_map = affine_trafo(slopes, projections)
-        frame_fit_error, angle = fitter(plane_points, Constants.ANGLE_FIT_MESH,
-                                        frame.frame)
-        sensor_points_plane = rotate_frame([frame.sensor[0:2]], angle)
-        sensor_points_space = list(
-            map(
-                lambda x: np.matmul(affine_map,
-                                    np.append(x, [frame.sensor[2], 1]))[0:3],
-                sensor_points_plane))
-        sensor_points_frame_3d = list(
-            map(lambda x: np.matmul(affine_map, np.append(x, [0, 1]))[0:3],
-                sensor_points_plane))
-        frame_center_of_mass = np.matmul(affine_map, np.array(
-            (0, 0, 0, 1)))[0:3]
-        self.slopes = slopes
-        self.projections = projections
-        self.plane_points = plane_points
-        self.sensor_space = sensor_points_space
-        self.sensor_plane = sensor_points_plane
-        self.frame = rotate_frame(frame.frame, angle)
-        self.com = frame_center_of_mass
-        self.sensor_points_frame = sensor_points_frame_3d
+        self.data = data
+        self.pre_frame = frame
+        self.frame = frame.frame
+
+    # returns (slopes of plane fit, point projections on plane, fit error)
+    def plane(self):
+        return plane_maker(self.data)
+
+    # returns point (projections in 3d, the affine map used)
+    def plane_points(self):
+        return affine_trafo(*self.plane()[0:2])
+
+    # returns (the best fit angle of fitting points to frame, fit error)
+    def frame_fit_angle(self):
+        return fitter(self.plane_points()[0], Constants.ANGLE_FIT_MESH,
+                      self.pre_frame.frame)
+
+    # the frame in the plane, rotated by the best angle
+    def frame_fit(self):
+        return rotate_frame(self.frame, self.frame_fit_angle()[1])
+
+    # the sensor point in 2D
+    def sensor_plane(self):
+        return rotate_frame([self.pre_frame.sensor[0:2]],
+                            self.frame_fit_angle()[1])
+
+    # returns the sensor point in 3D
+    def sensor(self):
+        return np.matmul(
+            self.plane_points()[1],
+            np.append(self.sensor_plane()[0],
+                      [self.pre_frame.sensor[2], 1]))[0:3]
+
+    def com(self):
+        return np.matmul(self.plane_points()[1], np.array((0, 0, 0, 1)))[0:3]
 
     def __repr__(self):
-        return 'OPM with com at {}'.format(self.com)
+        return 'OPM with com at {}'.format(self.com())

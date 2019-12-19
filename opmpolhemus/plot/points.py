@@ -22,7 +22,6 @@ def plot_points(pcl,
                 pt=6.0,
                 c='r',
                 name_label=''):
-    print('🎨 Making some plots')
     plot_name = 'point plot {},  # points={}, range: {}-{}'.format(
         name_label, len(indices), min(indices), max(indices))
     fig = plt.figure(plot_name)
@@ -65,7 +64,6 @@ def plot_points(pcl,
 
 
 def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
-    print('🎨 Making some plots')
     plot_name = 'point plot {}, #point sets={}'.format(name_label,
                                                        len(list_in))
     fig = plt.figure(plot_name)
