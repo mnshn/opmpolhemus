@@ -12,5 +12,5 @@ class Constants:
     HOLDER_ZSIZE = 0.0244
     CELL_POS_Y = 0  # when we solve xy orientation: 0.0019
     CELL_POS_Z = 0.0065
-    ANGLE_FIT_MESH = 0.1
+    ANGLE_FIT_MESH = 0.05
     OPM_DIFFERENCE_THRESHOLD = 0.01

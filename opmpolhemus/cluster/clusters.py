@@ -23,22 +23,26 @@ def diff_of_com(points):
         return np.inf
 
 
-def next_opm(unique_pen_click,
+def next_opm(frame,
+             unique_pen_click,
              pcl_index,
              points,
+             turns,
              pcl,
              com_threshold=Constants.COM_THRESHOLD,
              distance_threshold=Constants.DISTANCE_THRESHOLD):
     points = np.array(list(map(lambda x: pcl[x], points)))
-    far_from_com = (unique_pen_click > 3) and abs(
+    far_from_com = ((turns + 1) * unique_pen_click > frame.order - 1) and abs(
         np.linalg.norm(com(points) - pcl[pcl_index]) -
         diff_of_com(points)) > com_threshold
     very_far_from_previous = (unique_pen_click > 0) and np.linalg.norm(
         pcl[pcl_index] - pcl[pcl_index - 1]) > distance_threshold
-    return (far_from_com or very_far_from_previous)
+    all_found = turns == frame.turns
+    return (all_found or far_from_com or very_far_from_previous)
 
 
 def cluster_opms(pcl,
+                 frame,
                  start=Constants.DEFAULT_START,
                  double_click_threshold=Constants.DOUBLE_CLICK_THRESHOLD):
     output = {}
@@ -49,12 +53,13 @@ def cluster_opms(pcl,
         output[opm_index] = {}
         unique_pen_click = 0
         pen_click = 0
-        while pen_click < Constants.MAX_POINTS_PER_OPM and pcl_index < len(
-                pcl):
+        turns = 0
+        while pen_click < 2 * frame.turns * frame.order and pcl_index < len(
+                pcl) and turns < frame.turns:
             unique_points_so_far = list(
                 map(lambda x: x[0], list(output[opm_index].values())))
-            if next_opm(unique_pen_click, pcl_index, unique_points_so_far,
-                        pcl):
+            if next_opm(frame, unique_pen_click, pcl_index,
+                        unique_points_so_far, turns, pcl):
                 break
             else:
                 for L in range(0, unique_pen_click):
@@ -67,4 +72,7 @@ def cluster_opms(pcl,
                     unique_pen_click += 1
                 pen_click += 1
             pcl_index += 1
+            if unique_pen_click == frame.order:
+                turns += 1
+                unique_pen_click = 0
     return output

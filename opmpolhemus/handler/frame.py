@@ -14,6 +14,7 @@ class Frame():
         self.style = style
         if style == 'base':
             self.order = 8
+            self.turns = 1
             self.frame = [(RIDGE + DELTA, YSIZE + DELTA),
                           (XSIZE + DELTA, RIDGE + DELTA),
                           (XSIZE + DELTA, -(RIDGE + DELTA)),
@@ -25,8 +26,11 @@ class Frame():
             self.sensor = (0.0, YCELL, ZCELL - 0.0015)
         elif style == 'top':
             self.order = 4
-            self.frame = [(-XSIZE, YSIZE), (XSIZE, YSIZE), (XSIZE, -YSIZE),
-                          (-XSIZE, -YSIZE)]
+            self.turns = 2
+            self.frame = [(-XSIZE + DELTA, YSIZE - DELTA),
+                          (XSIZE - DELTA, YSIZE - DELTA),
+                          (XSIZE - DELTA, -YSIZE + DELTA),
+                          (-XSIZE + DELTA, -YSIZE + DELTA)]
             self.sensor = (0.0, YCELL, -(ZSIZE - ZCELL))
 
     def __repr__(self):
