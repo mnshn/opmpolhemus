@@ -38,5 +38,4 @@ def remove_double_opms(obj):
 def post_process(obj, pcl):
     obj_out = average_double_clicks(obj, pcl)
     obj_out = remove_double_opms(obj_out)
-    print(f'Found {len(obj_out.keys())} opms')
     return np.array(list(obj_out.values()))
