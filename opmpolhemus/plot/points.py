@@ -22,8 +22,7 @@ def plot_points(pcl,
                 pt=6.0,
                 c='r',
                 name_label=''):
-    plot_name = 'point plot {},  # points={}, range: {}-{}'.format(
-        name_label, len(indices), min(indices), max(indices))
+    plot_name = f'point plot {name_label}'
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
     ax.grid(False)
@@ -79,7 +78,7 @@ def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
     axisEqual3D(ax)
 
 
-def plane_plot(points, frame_points=[], additional_points=[], name_label=''):
+def frame_plot(points, frame_points=[], additional_points=[], name_label=''):
     plot_name = 'point plot {}'.format(name_label)
     xy = np.array(points)
     minor_xticks = np.arange(2 * min(xy[:, 0]), 2 * max(xy[:, 0]), 0.001)

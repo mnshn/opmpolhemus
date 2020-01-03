@@ -1,30 +1,22 @@
 import math
 import numpy as np
+
+from constants import Constants
+
 from fitframe.plane import plane_maker
 from fitframe.projection import affine_trafo
 from fitframe.fit import fitter
-from constants import Constants
+
 from .frame import Frame
 
-from plot.points import plane_plot
+from plot.points import frame_plot, plot_points
 
-
-def rotate(point, theta):
-    rot_mat = np.array([[math.cos(theta), -math.sin(theta)],
-                        [math.sin(theta), math.cos(theta)]])
-    return np.matmul(rot_mat, point)
-
-
-def rotate_frame(set, theta):
-    out = []
-    for point in set:
-        out.append(rotate(point, theta))
-    return out
+from helpers.rot import rotate_frame
 
 
 class OPM:
-    def __init__(self, data, style='base'):
-        frame = Frame(style=style)
+    def __init__(self, data, frame_style):
+        frame = Frame(style=frame_style)
         self.data = data
         self.frame = frame
         self.label = None
@@ -41,11 +33,18 @@ class OPM:
             np.append(self.sensor_plane[0], [self.frame.sensor[2], 1]))[0:3]
         self.com = np.matmul(self.affine_map, np.array((0, 0, 0, 1)))[0:3]
 
-    def show_plane_fit(self):
-        plane_plot(self.plane_points,
+    def show_frame_fit(self):
+        frame_plot(self.plane_points,
                    frame_points=self.frame_fit,
                    additional_points=self.sensor_plane,
                    name_label=self.label)
+
+    def show_plane_fit(self):
+        plot_points(self.data,
+                    surface_slopes=self.slopes,
+                    projected_points=self.projections,
+                    name_label=self.label,
+                    additional_points=[self.sensor])
 
     def __repr__(self):
         return 'OPM with com at {}'.format(self.com())

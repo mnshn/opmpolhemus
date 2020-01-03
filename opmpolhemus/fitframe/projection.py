@@ -1,11 +1,5 @@
 import numpy as np
-
-
-def com(points):
-    try:
-        return (1 / len(points)) * np.sum(points, axis=0)
-    except ZeroDivisionError:
-        return np.inf
+from helpers.com import com
 
 
 def sign(flt):
@@ -34,6 +28,7 @@ def affine_trafo(slopes, points):
     affine = np.array([origin, origin + vec, origin + V, origin + normal])
     affine = np.vstack((np.matrix.transpose(affine), [1, 1, 1, 1]))
     affine_map = np.matmul(target, np.linalg.inv(affine))
+
     return list(
-        map(lambda x: np.matmul(affine_map, np.hstack((x, 1)))[0:2],
-            points)), np.linalg.inv(affine_map)
+        np.matmul(affine_map, np.hstack((point, 1)))[0:2]
+        for point in points), np.linalg.inv(affine_map)

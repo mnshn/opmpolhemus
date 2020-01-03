@@ -1,5 +1,4 @@
 import numpy as np
-import copy
 from constants import Constants
 
 
@@ -17,7 +16,7 @@ def average_double_clicks(obj, pcl):
         opms_out[i] = []
         for j in obj[i]:
             if len(obj[i][j]) > 1:
-                coords = list(map(lambda x: pcl[x], obj[i][j]))
+                coords = list(pcl[x] for x in obj[i][j])
                 opms_out[i].append(com(coords))
             else:
                 opms_out[i].append(pcl[obj[i][j]][0])
@@ -39,5 +38,5 @@ def remove_double_opms(obj):
 def post_process(obj, pcl):
     obj_out = average_double_clicks(obj, pcl)
     obj_out = remove_double_opms(obj_out)
-    print('🦠  Found {} opms'.format(len(obj_out.keys())))
+    print(f'Found {len(obj_out.keys())} opms')
     return np.array(list(obj_out.values()))
