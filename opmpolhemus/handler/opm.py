@@ -47,4 +47,4 @@ class OPM:
                     additional_points=[self.sensor])
 
     def __repr__(self):
-        return 'OPM with com at {}'.format(self.com())
+        return f'OPM with com at {self.com}'

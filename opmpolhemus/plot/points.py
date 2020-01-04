@@ -20,7 +20,7 @@ def plot_points(pcl,
                 projected_points=[],
                 additional_points=[],
                 pt=6.0,
-                c='r',
+                co='r',
                 name_label=''):
     plot_name = f'point plot {name_label}'
     fig = plt.figure(plot_name)
@@ -30,7 +30,7 @@ def plot_points(pcl,
         xyz = np.array(pcl)[np.array(indices)]
     else:
         xyz = np.array(pcl)
-    ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=c, s=pt)
+    ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=co, s=pt)
     if len(indices):
         for i in range(len(indices)):
             ax.text(xyz[i, 0], xyz[i, 1], xyz[i, 2], indices[i])
@@ -63,8 +63,7 @@ def plot_points(pcl,
 
 
 def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
-    plot_name = 'point plot {}, #point sets={}'.format(name_label,
-                                                       len(list_in))
+    plot_name = f'point plot {name_label},  #point clusters= {len(list_in)}'
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
     colors = [plt.cm.prism(each) for each in np.linspace(0, 1, len(list_in))]
@@ -79,7 +78,7 @@ def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
 
 
 def frame_plot(points, frame_points=[], additional_points=[], name_label=''):
-    plot_name = 'point plot {}'.format(name_label)
+    plot_name = f'point plot {name_label}'
     xy = np.array(points)
     minor_xticks = np.arange(2 * min(xy[:, 0]), 2 * max(xy[:, 0]), 0.001)
     minor_yticks = np.arange(2 * min(xy[:, 1]), 2 * max(xy[:, 1]), 0.001)

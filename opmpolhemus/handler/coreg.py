@@ -2,8 +2,8 @@ import numpy as np
 
 from cluster.clusters import cluster_opms
 from cluster.process import post_process
-from handler.frame import Frame
 
+from handler.frame import Frame
 from handler.opm import OPM
 
 from plot.points import plot_points_list

@@ -34,4 +34,4 @@ class Frame():
             self.sensor = (0.0, YCELL, -(ZSIZE - ZCELL))
 
     def __repr__(self):
-        return '{} frame of {} points'.format(self.style, self.order)
+        return f'{self.style} frame of {self.order} points'

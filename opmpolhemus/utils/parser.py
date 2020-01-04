@@ -8,6 +8,6 @@ def mat_parser(file):
         f = open(file, 'r')
         for line in f:
             line = line.split('\n')[0]
-            line = list(map(lambda x: float(x), line.split('\t')))
+            line = list(float(x) for x in line.split('\t'))
             output.append(line)
     return np.array(output)
