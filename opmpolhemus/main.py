@@ -1,7 +1,5 @@
-from utils.parser import mat_parser
-from handler.coreg import CoReg
-
-test_file = '../db/proper02/point.txt'
+from opmpolhemus.utils.parser import mat_parser
+from opmpolhemus.handler.coreg import CoReg
 
 
 def coreg(data, frame_style, log_level=0):
@@ -10,6 +8,3 @@ def coreg(data, frame_style, log_level=0):
     if log_level == 1:
         coreg_out.show_coreg()
     return coreg_out.sensors
-
-
-print(coreg(test_file, 'top', log_level=0))

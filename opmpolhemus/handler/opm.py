@@ -1,17 +1,17 @@
 import math
 import numpy as np
 
-from constants import Constants
+from opmpolhemus.constants import Constants
 
-from fitframe.plane import plane_maker
-from fitframe.projection import affine_trafo
-from fitframe.fit import fitter
+from opmpolhemus.fitframe.plane import plane_maker
+from opmpolhemus.fitframe.projection import affine_trafo
+from opmpolhemus.fitframe.fit import fitter
 
-from .frame import Frame
+from opmpolhemus.handler.frame import Frame
 
-from plot.points import frame_plot, plot_points
+from opmpolhemus.plot.points import frame_plot, plot_points
 
-from helpers.rot import rotate_frame
+from opmpolhemus.helpers.rot import rotate_frame
 
 
 class OPM:

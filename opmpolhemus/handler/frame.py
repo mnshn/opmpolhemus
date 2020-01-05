@@ -1,4 +1,4 @@
-from constants import Constants
+from opmpolhemus.constants import Constants
 
 DELTA = Constants.PEN_POINT_SIZE
 RIDGE = Constants.RIDGE_SIZE

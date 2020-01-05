@@ -4,6 +4,11 @@ This package computes the three dimensional spatial location for the center of
 the sensor cell for all OPMs whose positions are measured by a polhemus device.
 This is a necessary step in solving the *forward problem*.
 
+##
+
+test by running `python -m unittest test.test` from the root of this project
+folder
+
 ## Hardware
 
 The OPM device is the 
@@ -22,7 +27,7 @@ specific points to tap, from which this program then computes the location of
 the sensor. Such a set of specific points will be called a *frame*, and the
 frames we allow for are dubbed: *base* and *top*, and are defined as follows:
 
-### frame: base
+## frame: base
 ```
         <-------+  16.6 +------->
 
@@ -52,7 +57,7 @@ With these measured points (`N = 8 x # of OPMS` in total for frame=top) as input
 OPM. Because of the thickness of the base frame, the reference points *O* sit
 slightly higher (`1.5mm`) than the OPM bottom, as noted in the diagram.
 
-### frame: top
+## frame: top
 ```
         <-------+  16.6 +------->
 

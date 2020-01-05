@@ -1,12 +1,12 @@
 import numpy as np
 
-from cluster.clusters import cluster_opms
-from cluster.process import post_process
+from opmpolhemus.cluster.clusters import cluster_opms
+from opmpolhemus.cluster.process import post_process
 
-from handler.frame import Frame
-from handler.opm import OPM
+from opmpolhemus.handler.frame import Frame
+from opmpolhemus.handler.opm import OPM
 
-from plot.points import plot_points_list
+from opmpolhemus.plot.points import plot_points_list
 
 import matplotlib.pyplot as plt
 

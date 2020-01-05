@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-from helpers.rot import rotate_frame
+from opmpolhemus.helpers.rot import rotate_frame
 
 
 def distance_to_nearest(point, set):

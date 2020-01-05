@@ -1,5 +1,5 @@
 import numpy as np
-from helpers.com import com
+from opmpolhemus.helpers.com import com
 
 
 def sign(flt):

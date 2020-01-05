@@ -1,5 +1,5 @@
 import numpy as np
-from constants import Constants
+from opmpolhemus.constants import Constants
 
 
 def com(points):
