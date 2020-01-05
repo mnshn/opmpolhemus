@@ -4,11 +4,12 @@ This package computes the three dimensional spatial location for the center of
 the sensor cell for all OPMs whose positions are measured by a polhemus device.
 This is a necessary step in solving the *forward problem*.
 
-##
+## test
 
 test by running 
 
 `python -m unittest test.test` 
+
 from the root of this project
 folder, or run it as a module: 
 
