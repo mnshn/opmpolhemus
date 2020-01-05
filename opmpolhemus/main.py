@@ -12,4 +12,4 @@ def coreg(data, frame_style, log_level=0):
     return coreg_out.sensors
 
 
-coreg(test_file, 'top', log_level=1)
+print(coreg(test_file, 'top', log_level=0))
