@@ -7,7 +7,7 @@ This is a necessary step in solving the *forward problem*.
 ##
 
 test by running `python -m unittest test.test` from the root of this project
-folder
+folder, or run it as a module: `python -m opmpolhemus.main`
 
 ## Hardware
 

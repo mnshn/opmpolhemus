@@ -8,3 +8,7 @@ def coreg(data, frame_style, log_level=0):
     if log_level == 1:
         coreg_out.show_coreg()
     return coreg_out.sensors
+
+
+if __name__ == '__main__':
+    coreg('test/test_files/test01.txt', 'top', log_level=1)
