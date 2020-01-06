@@ -6,7 +6,7 @@ def sensors(data, frame_style, log_level=0):
     parsed_data = mat_parser(data)
     sensors_out = Sensors(parsed_data, frame_style)
     if log_level == 1:
-        sensors_out.show_coreg()
+        sensors_out.show_sensors()
     return sensors_out.sensors
 
 

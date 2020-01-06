@@ -22,7 +22,7 @@ class Sensors():
         if log_level == 1:
             print(f'Found {self.order} opms')
 
-    def show_coreg(self):
+    def show_sensors(self):
         plot_points_list(np.array(self.clusters),
                          additional_points=self.sensors)
         plt.show()
