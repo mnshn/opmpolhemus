@@ -25,7 +25,9 @@ Then import as:
 
 `from opmpolhemus.coreg import coreg`
 
-The function `coreg` accepts two required arguments: `coreg(data,,
+The module does require: `numpy`, `scipy` and `matplotlib`.
+
+The function `coreg` accepts two required arguments: `coreg(data,
 frame_style)`. The data should for now be a text file containing your
 measurements in matrix form. The frame_style should be either `top` or `base`
 (see below for more info on that).
