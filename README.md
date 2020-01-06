@@ -4,7 +4,7 @@ This package computes the three dimensional spatial location for the center of
 the sensor cell for all OPMs whose positions are measured by a polhemus device.
 This is a necessary step in solving the *forward problem*.
 
-## test
+## Test
 
 test by running 
 
@@ -13,7 +13,22 @@ test by running
 from the root of this project
 folder, or run it as a module: 
 
-`python -m opmpolhemus.main`
+`python -m opmpolhemus.coreg test/test_files/test01.txt`
+
+## Usage
+
+To use this in your project, install with
+
+`python setup.py install`
+
+Then import as:
+
+`from opmpolhemus.coreg import coreg`
+
+The function `coreg` accepts two required arguments: `coreg(data,,
+frame_style)`. The data should for now be a text file containing your
+measurements in matrix form. The frame_style should be either `top` or `base`
+(see below for more info on that).
 
 ## Hardware
 

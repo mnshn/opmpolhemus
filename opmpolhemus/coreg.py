@@ -11,4 +11,6 @@ def coreg(data, frame_style, log_level=0):
 
 
 if __name__ == '__main__':
-    coreg('test/test_files/test01.txt', 'top', log_level=1)
+    import sys
+    file_in = sys.argv[1]
+    coreg(file_in, 'top', log_level=1)
