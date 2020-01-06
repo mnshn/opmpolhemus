@@ -2,7 +2,7 @@ import numpy as np
 from opmpolhemus.utils.parser import mat_parser
 from opmpolhemus.cluster.clusters import cluster_opms
 from opmpolhemus.handler.frame import Frame
-from opmpolhemus.main import coreg
+from opmpolhemus.coreg import coreg
 import os
 import unittest
 dir_path = os.path.dirname(os.path.realpath(__file__))
