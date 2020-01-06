@@ -11,7 +11,7 @@ from opmpolhemus.plot.points import plot_points_list
 import matplotlib.pyplot as plt
 
 
-class CoReg():
+class Sensors():
     def __init__(self, data, frame_stlye, log_level=0):
         self.frame = Frame(frame_stlye)
         clusters = cluster_opms(data, self.frame)

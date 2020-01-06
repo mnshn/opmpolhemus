@@ -13,7 +13,7 @@ test by running
 from the root of this project
 folder, or run it as a module: 
 
-`python -m opmpolhemus.coreg test/test_files/test01.txt`
+`python -m opmpolhemus.sensors test/test_files/test01.txt`
 
 ## Usage
 
@@ -23,7 +23,7 @@ To use this in your project, install with
 
 Then import as:
 
-`from opmpolhemus.coreg import coreg`
+`from opmpolhemus.sensors import sensors`
 
 The module does require: `numpy`, `scipy` and `matplotlib`.
 

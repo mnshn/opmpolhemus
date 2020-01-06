@@ -2,7 +2,7 @@ README.md
 setup.py
 opmpolhemus/__init__.py
 opmpolhemus/constants.py
-opmpolhemus/coreg.py
+opmpolhemus/sensors.py
 opmpolhemus/cluster/__init__.py
 opmpolhemus/cluster/clusters.py
 opmpolhemus/cluster/process.py
@@ -11,9 +11,9 @@ opmpolhemus/fitframe/fit.py
 opmpolhemus/fitframe/plane.py
 opmpolhemus/fitframe/projection.py
 opmpolhemus/handler/__init__.py
-opmpolhemus/handler/coreg.py
 opmpolhemus/handler/frame.py
 opmpolhemus/handler/opm.py
+opmpolhemus/handler/sensors.py
 opmpolhemus/helpers/__init__.py
 opmpolhemus/helpers/com.py
 opmpolhemus/helpers/rot.py

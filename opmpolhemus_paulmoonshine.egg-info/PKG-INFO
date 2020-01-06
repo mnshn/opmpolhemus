@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: opmpolhemus-paulmoonshine
 Version: 0.0.1
-Summary: coreg of opms
+Summary: sensor locations of opms
 Home-page: https://github.com/paulmoonshine/opmpolhemus
 Author: pdl
 Author-email: p.delange@uky.edu
@@ -21,7 +21,7 @@ Description: # opmpolhemus
         from the root of this project
         folder, or run it as a module: 
         
-        `python -m opmpolhemus.coreg test/test_files/test01.txt`
+        `python -m opmpolhemus.sensors test/test_files/test01.txt`
         
         ## Usage
         
@@ -31,7 +31,7 @@ Description: # opmpolhemus
         
         Then import as:
         
-        `from opmpolhemus.coreg import coreg`
+        `from opmpolhemus.sensors import sensors`
         
         The module does require: `numpy`, `scipy` and `matplotlib`.
         

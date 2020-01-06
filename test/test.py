@@ -2,7 +2,7 @@ import numpy as np
 from opmpolhemus.utils.parser import mat_parser
 from opmpolhemus.cluster.clusters import cluster_opms
 from opmpolhemus.handler.frame import Frame
-from opmpolhemus.coreg import coreg
+from opmpolhemus.sensors import sensors
 import os
 import unittest
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -26,7 +26,7 @@ class Test(unittest.TestCase):
                 self.assertIsInstance(val, list)
 
     def test_main(self):
-        test_reg = coreg(test_file, 'top', log_level=0)
+        test_reg = sensors(test_file, 'top', log_level=0)
         self.assertIsInstance(test_reg, list)
 
 
