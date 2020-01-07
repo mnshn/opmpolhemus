@@ -16,11 +16,7 @@ def mat_parser(file):
             with mne.io.read_raw_fif(file, allow_maxshield=True) as f:
                 for i in range(0, len(f.info['dig'])):
                     if f.info['dig'][i]['kind'] == 4:
-                        output.append(
-                            np.array(
-                                list(
-                                    np.float64(x)
-                                    for x in f.info['dig'][i]['r'])))
+                        output.append(f.info['dig'][i]['r'])
         except RuntimeWarning:
             pass
 

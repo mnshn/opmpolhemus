@@ -25,12 +25,8 @@ class Test(unittest.TestCase):
         self.assertEqual(np.shape(parsed_txt)[1], 3)
         for el in parsed_txt:
             self.assertEqual(type(el).__name__, 'ndarray')
-            for i in el:
-                self.assertEqual(type(i).__name__, 'float64')
         for el in parsed_fif:
             self.assertEqual(type(el).__name__, 'ndarray')
-            for i in el:
-                self.assertEqual(type(i).__name__, 'float64')
 
     def test_cluster(self):
         frame = Frame(style='top')
