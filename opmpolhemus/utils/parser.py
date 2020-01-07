@@ -13,7 +13,9 @@ def mat_parser(file):
                 output.append(line)
     elif os.path.basename(file).split('.')[1] == 'fif':
         try:
-            with mne.io.read_raw_fif(file, allow_maxshield=True) as f:
+            with mne.io.read_raw_fif(file,
+                                     allow_maxshield=True,
+                                     verbose='error') as f:
                 for i in range(0, len(f.info['dig'])):
                     if f.info['dig'][i]['kind'] == 4:
                         output.append(f.info['dig'][i]['r'])

@@ -4,6 +4,8 @@ from scipy import odr
 
 # Orthogonal regression:
 def odr_fit(points):
+    points = np.array(points)
+
     def f(B, input):
         x, y = input
         x = np.array(x)

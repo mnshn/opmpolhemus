@@ -17,7 +17,8 @@ class Sensors():
         clusters = cluster_opms(data, self.frame)
         self.clusters = post_process(clusters, data)
         self.order = np.shape(self.clusters)[0]
-        self.opms = list(OPM(x, frame_stlye) for x in self.clusters)
+        self.opms = list(
+            OPM(cluster, frame_stlye) for cluster in self.clusters)
         self.sensors = list(opm.sensor for opm in self.opms)
         if log_level == 1:
             print(f'Found {self.order} opms')

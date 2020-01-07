@@ -1,12 +1,6 @@
 import numpy as np
 from opmpolhemus.constants import Constants
-
-
-def com(points):
-    try:
-        return (1 / len(points)) * np.sum(points, axis=0)
-    except ZeroDivisionError:
-        return np.inf
+from opmpolhemus.helpers.com import com
 
 
 def average_double_clicks(obj, pcl):

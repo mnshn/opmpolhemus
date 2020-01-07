@@ -28,8 +28,9 @@ Then import as:
 The package does require: `mne`, `numpy`, `scipy` and `matplotlib`. The `mne` is required to accept `fif` files.
 
 The function `sensors` accepts two required arguments: `sensors(data,
-frame_style)`. The data should for now be a text file containing your
-measurements in matrix form. The frame_style should be either `top` or `base`
+frame_style)`. The data should for now be a `.txt` file containing your
+measurements in matrix form (only opm measurements) or a `.fif` file containing the
+digitization. The frame_style should be either `top` or `base`
 (see below for more info on that).
 
 
@@ -37,7 +38,7 @@ measurements in matrix form. The frame_style should be either `top` or `base`
 
 Both `.fif` files and `.txt` files are accepted as `data`. When input is a
 `.txt`, it is assumed the input is a matrix of the HPI measurements, *but only
-the actual opm HPI measurments*, so not including the fiducial points and the
+the actual opm HPI measurements*, so not including the fiducial points and the
 indicator points (typically 4 and 3 respectively). For a `.fif` file, nothing
 extra needs to be done as the parser will itself only select the actual HPI
 measurements.

@@ -3,6 +3,7 @@ from opmpolhemus.handler.sensors import Sensors
 
 
 def sensors(data, frame_style, log_level=0):
+
     parsed_data = mat_parser(data)
     sensors_out = Sensors(parsed_data, frame_style)
     if log_level == 1:
