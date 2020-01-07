@@ -13,7 +13,7 @@ test by running
 from the root of this project
 folder, or run it as a module: 
 
-`python -m opmpolhemus.sensors test/test_files/test01.txt`
+`python -m opmpolhemus.sensors test/test_files/test01_raw.fif`
 
 ## Usage
 
@@ -25,12 +25,22 @@ Then import as:
 
 `from opmpolhemus.sensors import sensors`
 
-The module does require: `numpy`, `scipy` and `matplotlib`.
+The package does require: `mne`, `numpy`, `scipy` and `matplotlib`. The `mne` is required to accept `fif` files.
 
-The function `coreg` accepts two required arguments: `coreg(data,
+The function `sensors` accepts two required arguments: `sensors(data,
 frame_style)`. The data should for now be a text file containing your
 measurements in matrix form. The frame_style should be either `top` or `base`
 (see below for more info on that).
+
+
+### Data
+
+Both `.fif` files and `.txt` files are accepted as `data`. When input is a
+`.txt`, it is assumed the input is a matrix of the HPI measurements, *but only
+the actual opm HPI measurments*, so not including the fiducial points and the
+indicator points (typically 4 and 3 respectively). For a `.fif` file, nothing
+extra needs to be done as the parser will itself only select the actual HPI
+measurements.
 
 ## Hardware
 
