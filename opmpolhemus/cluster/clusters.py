@@ -14,7 +14,7 @@ def next_opm(frame,
              pcl,
              com_threshold=Constants.COM_THRESHOLD,
              distance_threshold=Constants.DISTANCE_THRESHOLD):
-    points = np.array(list(pcl[i] for i in points))
+    points = list(pcl[i] for i in points)
     far_from_com = ((turns + 1) * unique_pen_click > frame.order - 1) and abs(
         np.linalg.norm(com(points) - pcl[pcl_index]) -
         diff_of_com(points)) > com_threshold
