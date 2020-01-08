@@ -31,4 +31,4 @@ def affine_trafo(slopes, points):
 
     return list(
         np.matmul(affine_map, np.hstack((point, 1)))[0:2]
-        for point in points), np.linalg.inv(affine_map)
+        for point in points), np.linalg.inv(affine_map), normal

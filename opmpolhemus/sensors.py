@@ -8,6 +8,7 @@ def sensors(data, frame_style, log_level=0):
     sensors_out = Sensors(parsed_data, frame_style)
     if log_level == 1:
         sensors_out.show_sensors()
+    # normals_out = sensors_out.normals
     return sensors_out.sensors
 
 

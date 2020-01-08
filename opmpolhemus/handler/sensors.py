@@ -20,10 +20,12 @@ class Sensors():
         self.opms = list(
             OPM(cluster, frame_stlye) for cluster in self.clusters)
         self.sensors = list(opm.sensor for opm in self.opms)
+        self.normals = list(opm.normal for opm in self.opms)
         if log_level == 1:
             print(f'Found {self.order} opms')
 
     def show_sensors(self):
         plot_points_list(np.array(self.clusters),
-                         additional_points=self.sensors)
+                         additional_points=self.sensors,
+                         normals=self.normals)
         plt.show()

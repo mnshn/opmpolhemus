@@ -62,19 +62,26 @@ def plot_points(pcl,
     axisEqual3D(ax)
 
 
-def plot_points_list(list_in=[], pt=3.0, name_label='', additional_points=[]):
+def plot_points_list(list_in=[],
+                     pt=3.0,
+                     name_label='',
+                     additional_points=[],
+                     normals=[]):
     plot_name = f'point plot {name_label},  #point clusters= {len(list_in)}'
     fig = plt.figure(plot_name)
     ax = fig.add_subplot(111, projection='3d')
     colors = [plt.cm.prism(each) for each in np.linspace(0, 1, len(list_in))]
     for (k, col) in zip(list(range(0, len(list_in))), colors):
         xyz = list_in[k]
-        ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color=col, s=pt)
-        ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k, fontsize=12)
+        ax.scatter(xyz[:, 0], xyz[:, 1], xyz[:, 2], color='b', s=pt)
+        ax.text(xyz[0, 0], xyz[0, 1], xyz[0, 2], k + 1, fontsize=12)
     if len(additional_points):
         axyz = np.array(additional_points)
         ax.scatter(axyz[:, 0], axyz[:, 1], axyz[:, 2], color='r', s=6.0)
-    axisEqual3D(ax)
+    if len(normals) and len(additional_points):
+        for a, b in zip(additional_points, normals):
+            ax.quiver(*a, *b, length=0.015, normalize=True, color='g')
+    # axisEqual3D(ax)
 
 
 def frame_plot(points, frame_points=[], additional_points=[], name_label=''):

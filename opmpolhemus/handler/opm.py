@@ -20,7 +20,7 @@ class OPM:
         self.frame = frame
         self.label = None
         self.slopes, self.projections, self.fit_error = plane_maker(data)
-        self.plane_points, self.affine_map = affine_trafo(
+        self.plane_points, self.affine_map, self.normal = affine_trafo(
             self.slopes, self.projections)
         self.frame_fit_angle, self.frame_fit_error = fitter(
             self.plane_points, Constants.ANGLE_FIT_MESH, self.frame.frame)
