@@ -93,7 +93,7 @@ slightly higher (`1.5mm`) than the OPM bottom, as noted in the diagram.
 
 ## frame: top
 ```
-        <-------+  16.6 +------->
+         <-------+  16.6 +------->
 
                    xxxxx
    ^     +---------xxxxx---------+
