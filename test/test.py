@@ -46,7 +46,7 @@ class Test(unittest.TestCase):
     def test_cluster_from_fif(self):
         frame = Frame(style='top')
         pcl = parsed_fif
-        cluster = cluster_opms(pcl, frame, start=0)
+        cluster = cluster_opms(pcl, frame)
         self.assertIsInstance(cluster, dict)
         self.assertGreater(len(cluster.keys()), 0)
         for value in cluster.values():

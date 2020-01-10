@@ -27,19 +27,16 @@ def next_opm(frame,
 
 def cluster_opms(pcl,
                  frame,
-                 start=Constants.DEFAULT_START,
                  double_click_threshold=Constants.DOUBLE_CLICK_THRESHOLD):
     output = {}
-    pcl_index = start
+    pcl_index = 0
     opm_index = -1
     while pcl_index < len(pcl):
         opm_index += 1
         output[opm_index] = {}
         unique_pen_click = 0
-        pen_click = 0
         turns = 0
-        while pen_click < 2 * frame.turns * frame.order and pcl_index < len(
-                pcl) and turns < frame.turns:
+        while turns < frame.turns and pcl_index < len(pcl):
             unique_points_so_far = list(x[0]
                                         for x in output[opm_index].values())
             if next_opm(frame, unique_pen_click, pcl_index,
@@ -56,7 +53,6 @@ def cluster_opms(pcl,
                 else:
                     output[opm_index][unique_pen_click] = [pcl_index]
                     unique_pen_click += 1
-                pen_click += 1
             pcl_index += 1
             if unique_pen_click == frame.order:
                 turns += 1
