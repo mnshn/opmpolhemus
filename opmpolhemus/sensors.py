@@ -1,5 +1,5 @@
-from opmpolhemus.utils.parser import mat_parser
 from opmpolhemus.handler.sensors import Sensors
+from opmpolhemus.utils.parser import mat_parser
 
 
 def sensors(data, frame_style, log_level=0):
@@ -15,5 +15,4 @@ def sensors(data, frame_style, log_level=0):
 if __name__ == '__main__':
     import sys
     file_in = sys.argv[1]
-    print(sys.path)
     sensors(file_in, 'top', log_level=1)

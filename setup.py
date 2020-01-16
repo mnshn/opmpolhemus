@@ -1,9 +1,14 @@
 from setuptools import setup, find_packages
+import os
 
 __version__ = '0.0.1'
 __author__ = 'Paul de Lange'
 __email__ = 'p.delange@uky.edu'
-with open("README.md", "r") as fh:
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+readme = os.path.join(dir_path, 'README.md')
+
+with open(readme, "r") as fh:
     long_description = fh.read()
 
 setup(
