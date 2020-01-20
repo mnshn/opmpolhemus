@@ -6,7 +6,7 @@ from opmpolhemus.fitframe.plane import plane_maker
 from opmpolhemus.fitframe.projection import affine_trafo
 from opmpolhemus.fitframe.fit import fitter
 
-from opmpolhemus.handler.frame import Frame
+from opmpolhemus.structures.frame import Frame
 
 from opmpolhemus.plot.points import frame_plot, plot_points
 

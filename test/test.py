@@ -2,8 +2,8 @@ import numpy as np
 from opmpolhemus.utils.parser import mat_parser
 from opmpolhemus.cluster.clusters import cluster_opms
 from opmpolhemus.cluster.process import post_process
-from opmpolhemus.handler.frame import Frame
-from opmpolhemus.handler.sensors import Sensors
+from opmpolhemus.structures.frame import Frame
+from opmpolhemus.structures.sensors import Sensors
 from opmpolhemus.sensors import sensors
 from opmpolhemus.constants import Constants
 

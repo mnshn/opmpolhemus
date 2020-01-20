@@ -3,8 +3,8 @@ import numpy as np
 from opmpolhemus.cluster.clusters import cluster_opms
 from opmpolhemus.cluster.process import post_process
 
-from opmpolhemus.handler.frame import Frame
-from opmpolhemus.handler.opm import OPM
+from opmpolhemus.structures.frame import Frame
+from opmpolhemus.structures.opm import OPM
 
 from opmpolhemus.plot.points import plot_points_list
 
@@ -12,13 +12,13 @@ import matplotlib.pyplot as plt
 
 
 class Sensors():
-    def __init__(self, data, frame_stlye, log_level=0):
-        self.frame = Frame(frame_stlye)
+    def __init__(self, data, frame_style, log_level=0):
+        self.frame = Frame(frame_style)
         clusters = cluster_opms(data, self.frame)
         self.clusters = post_process(clusters, data)
         self.order = np.shape(self.clusters)[0]
         self.opms = list(
-            OPM(cluster, frame_stlye) for cluster in self.clusters)
+            OPM(cluster, frame_style) for cluster in self.clusters)
         self.sensors = list(opm.sensor for opm in self.opms)
         self.normals = list(opm.normal for opm in self.opms)
         if log_level == 1:

@@ -1,4 +1,4 @@
-from opmpolhemus.handler.sensors import Sensors
+from opmpolhemus.structures.sensors import Sensors
 from opmpolhemus.utils.parser import mat_parser
 
 
