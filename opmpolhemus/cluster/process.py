@@ -1,6 +1,5 @@
 import numpy as np
 from opmpolhemus.constants import Constants
-from opmpolhemus.helpers.com import com
 
 
 def average_double_clicks(obj, pcl):
@@ -11,7 +10,7 @@ def average_double_clicks(obj, pcl):
         for j in obj[i]:
             if len(obj[i][j]) > 1:
                 coords = list(pcl[x] for x in obj[i][j])
-                opms_out[i].append(com(coords))
+                opms_out[i].append(np.mean(coords, axis=0))
             else:
                 opms_out[i].append(pcl[obj[i][j]][0])
     return opms_out
@@ -20,7 +19,7 @@ def average_double_clicks(obj, pcl):
 def remove_double_opms(obj):
     com_list = []
     for i in obj.keys():
-        com_list.append(com(obj[i]))
+        com_list.append(np.mean(obj[i], axis=0))
     for j in range(0, len(com_list)):
         for l in range(j + 1, len(com_list)):
             if np.linalg.norm(com_list[j] - com_list[l]

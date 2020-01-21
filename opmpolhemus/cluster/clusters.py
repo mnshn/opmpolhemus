@@ -2,7 +2,7 @@ import numpy as np
 
 from opmpolhemus.constants import Constants
 
-from opmpolhemus.helpers.com import com
+# from opmpolhemus.helpers.com import com
 from opmpolhemus.helpers.com import diff_of_com
 
 
@@ -17,7 +17,7 @@ def next_opm(frame,
     unique_points = list(pcl[i] for i in unique_points)
 
     far_from_com = ((turns + 1) * point > frame.order - 1) and abs(
-        np.linalg.norm(com(unique_points) - pcl[pcl_index]) -
+        np.linalg.norm(np.mean(unique_points, axis=0) - pcl[pcl_index]) -
         diff_of_com(unique_points)) > com_threshold
 
     very_far_from_previous = (

@@ -1,5 +1,4 @@
 import numpy as np
-from opmpolhemus.helpers.com import com
 
 
 def sign(flt):
@@ -11,7 +10,7 @@ def sign(flt):
 
 def affine_trafo(slopes, points):
 
-    origin = com(points)
+    origin = np.mean(points, axis=0)
     a = slopes[0]
     b = slopes[1]
     c = slopes[2]
