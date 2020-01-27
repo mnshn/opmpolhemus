@@ -3,7 +3,6 @@ from opmpolhemus.constants import Constants
 
 
 def average_double_clicks(obj, pcl):
-    # opms_out = copy.deepcopy(obj)
     opms_out = {}
     for i in obj.keys():
         opms_out[i] = []

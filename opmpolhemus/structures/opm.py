@@ -10,7 +10,7 @@ from opmpolhemus.structures.frame import Frame
 
 from opmpolhemus.plot.points import frame_plot, plot_points
 
-from opmpolhemus.helpers.rot import rotate_frame
+from opmpolhemus.utils.rot import rotate_frame
 
 
 class OPM:

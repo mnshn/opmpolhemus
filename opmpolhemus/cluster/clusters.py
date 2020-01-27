@@ -1,9 +1,6 @@
 import numpy as np
-
 from opmpolhemus.constants import Constants
-
-# from opmpolhemus.helpers.com import com
-from opmpolhemus.helpers.com import diff_of_com
+from opmpolhemus.utils.com import diff_of_com
 
 
 def next_opm(frame,
