@@ -27,8 +27,8 @@ Then import as:
 
 The package does require: `mne`, `numpy`, `scipy` and `matplotlib`. The `mne` is required to accept `fif` files.
 
-The function `sensors` accepts two required arguments: `sensors(data,
-frame_style)`. The data should for now be a `.txt` file containing your
+The function `sensors` accepts two required arguments: `data,
+frame_style`. The data should for now be a `.txt` file containing your
 measurements in matrix form (only opm measurements) or a `.fif` file containing the
 digitization. The frame_style should be either `top` or `base`
 (see below for more info on that).
