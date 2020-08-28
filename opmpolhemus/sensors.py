@@ -15,4 +15,9 @@ def sensors(data, frame_style, log_level=0):
 if __name__ == '__main__':
     import sys
     file_in = sys.argv[1]
-    sensors(file_in, 'top', log_level=1)
+    sensors_out = sensors(file_in, 'top', log_level=1)
+    if sys.argv[2]:
+        file_out = sys.argv[2]
+        sensors_out = [x.tolist() for x in sensors_out]
+        with open(file_out, 'w') as writer:
+            writer.write(str(sensors_out))

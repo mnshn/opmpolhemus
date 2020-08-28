@@ -30,6 +30,16 @@ Then, install the required packages with
 
 `pip install -r requirements.txt`.
 
+Now you can use this tool in the command line as:
+
+`python -m opmpolhemus.sensors $FILE_IN $FILE_OUT`
+
+where `$FILE_IN` is the input file in `.fif` or `.txt` format, and the
+`$FILE_OUT` is the full path to the output file where the array of sensor
+locations is written. For example:
+
+`python -m opmpolhemus.sensors test/test_files/test01_raw.fif out/test.txt`
+
 ### Library
 Or, to use this as a library in your Python project, install with
 
