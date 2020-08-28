@@ -17,7 +17,21 @@ folder, or run it as a module:
 
 ## Usage
 
-To use this in your project, install with
+### Command line tool
+To use this as a command line tool, first start a virtual environment with
+
+`python -m venv vevn`
+
+and activate it with
+
+`source venv/bin/activate`
+
+Then, install the required packages with
+
+`pip install -r requirements.txt`.
+
+### Library
+Or, to use this as a library in your Python project, install with
 
 `python setup.py install`
 
