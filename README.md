@@ -28,7 +28,8 @@ and activate it with
 
 Then, install the required packages with
 
-`pip install -r requirements.txt`.
+`pip install -r requirements.txt`
+`python setup.py install`
 
 Now you can use this tool in the command line as:
 

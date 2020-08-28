@@ -9,15 +9,17 @@ def sensors(data, frame_style, log_level=0):
     if log_level == 1:
         sensors_out.show_sensors()
     # normals_out = sensors_out.normals
-    return sensors_out.sensors
+    return sensors_out.sensors, sensors_out.normals
 
 
 if __name__ == '__main__':
     import sys
     file_in = sys.argv[1]
-    sensors_out = sensors(file_in, 'top', log_level=1)
+    sensors, normals = sensors(file_in, 'top', log_level=1)
     if sys.argv[2]:
         file_out = sys.argv[2]
-        sensors_out = [x.tolist() for x in sensors_out]
+        sensors = [sensor.tolist() for sensor in sensors]
+        normals = [normal.tolist() for normal in normals]
+        output = [sensors[i] + normals[i] for i in range(len(sensors))]
         with open(file_out, 'w') as writer:
-            writer.write(str(sensors_out))
+            writer.write(str(output))
