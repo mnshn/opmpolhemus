@@ -23,6 +23,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=['numpy>=1.13'],
+    install_requires=['numpy>=1.13', 'scipy', 'mne', 'matplotlib'],
     python_requires='>=3.6',
 )
