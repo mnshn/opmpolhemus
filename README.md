@@ -20,7 +20,7 @@ folder, or run it as a module:
 ### Command line tool
 To use this as a command line tool, first start a virtual environment with
 
-`python -m venv vevn`
+`python -m venv venv`
 
 and activate it with
 
